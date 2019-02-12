@@ -34,7 +34,7 @@ Order.getOrderById = function getOrderById(order_id, result) {
 }
 
 Order.getAllOrdersByUserId = function getAllOrdersByUserId(user_id, result) {
-    sql.query("select * from orders where user_id=?", user_id, function (err, res) {
+    sql.query("select * from orders where user_id=?", [user_id], function (err, res) {
         if (err) {
             console.log("Error : ", err);
             result(null, err);
