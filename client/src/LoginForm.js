@@ -9,10 +9,8 @@ class LoginForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            formFields: {
                 username: "",
-                password: "",
-            }
+                password: "",       
         };
         this.updateUsername = this.updateUsername.bind(this);
         this.updatePassword = this.updatePassword.bind(this);
@@ -23,8 +21,8 @@ class LoginForm extends React.Component {
         handleSubmit(e){
             e.preventDefault();
             let data = {
-                username: this.state.formFields["username"],
-                password: this.state.formFields["password"]
+                username: this.state.username,
+                password: this.state.password
             }
             //console.log(data.username);
             //console.log(data.password);
@@ -46,12 +44,12 @@ class LoginForm extends React.Component {
 
         updateUsername(e){
             e.preventDefault();
-            this.setState({ formFields: { username: e.target.value } })
+            this.setState({ username: e.target.value } )
         }
 
         updatePassword(e){
             e.preventDefault();
-            this.setState({ formFields: { password: e.target.value } })
+            this.setState({ password: e.target.value } )
         }
 
         render(){
@@ -66,12 +64,12 @@ class LoginForm extends React.Component {
                             <form onSubmit={this.handleSubmit}>
                                 <div className="form-group">
                                     <label>User Name  </label>
-                                    <input id="userinput" name="username" className="input-group-text" type="text" value={this.state.formFields.username || ''} onChange={this.updateUsername} />
+                                    <input id="userinput" name="username" className="input-group-text" type="text" value={this.state.username || ''} onChange={this.updateUsername} />
                                 </div>
 
                                 <div className="form-group">
                                     <label>Password  </label>
-                                    <input id="password" name="password" className="input-group-text" type="password" value={this.state.formFields.password || ''} onChange={this.updatePassword} />
+                                    <input id="password" name="password" className="input-group-text" type="password" value={this.state.password || ''} onChange={this.updatePassword} />
 
                                 </div>
                                 <input id="submit-button" type="submit" value="Sign In" className="btn btn-info" />
