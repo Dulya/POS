@@ -6,7 +6,7 @@ router.route('/orders')
     .post(orderController.createNewOrder);
 
 router.route('/orders/:orderId')
-    .post(orderController.createNewOrder);
+    .post(orderController.retreiveOrderById);
     
 
 router.route('/orders/:userId')

@@ -6,7 +6,6 @@ var Order = function (order) {
     this.user_id = order.user_id,
     this.status = order.status,
     this.created_date = new Date();
-    this.total_amount = order.total_amount;
 }
 
 Order.createOrder = function createOrder(newOrder,result) {
@@ -22,7 +21,7 @@ Order.createOrder = function createOrder(newOrder,result) {
 }
 
 Order.getOrderById = function getOrderById(order_id, result) {
-    sql.query("select * from orders where order_id = ?", order_id, function (err, res) {
+    sql.query("select * from orders where order_id = ?", [order_id], function (err, res) {
         if (err) {
             console.log("Error : ", err);
             result(null, err);
