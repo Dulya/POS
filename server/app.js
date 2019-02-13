@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require("cors");
 
-var userRouter=require("./routes/user");
+var authenticateRouter=require("./routes/authenticate");
 var orderRouter=require("./routes/order");
 var orderitemRouter=require("./routes/orderitem");
 
@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use("/user", userRouter);
+app.use("/authenticate", authenticateRouter);
 app.use("/order", orderRouter);
 app.use("/orderitem", orderitemRouter);
 

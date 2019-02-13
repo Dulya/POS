@@ -1,10 +1,10 @@
 'use strict';
 var jwt = require('jsonwebtoken');
 var config = require('../config.js');
-var User = require('../models/user_model.js');
+var Authenticate = require('../models/authenticate_model');
 
 exports.getAllUsers = (req, res) => {
-    User.getAllUsers()
+    Authenticate.getAllUsers()
         .then(users => {
             res.json(users);
         })
@@ -13,8 +13,8 @@ exports.getAllUsers = (req, res) => {
         });
 }
 
-exports.authenticate = (req, res) => {
-    User.authenticateUserName(req.body.user_name)
+exports.authenticateUser = (req, res) => {
+    Authenticate.authenticateUserName(req.body.user_name)
         .then(user => {
             if (req.body.password === user[0].password) {
 
