@@ -1,61 +1,71 @@
 'user strict';
 var sql = require('../utils/db_connection.js');
 
-var Order = function (order) {
+var Order = function (order){
     this.order_id = order.order_id,
-    this.user_id = order.user_id,
-    this.status = order.status,
-    this.created_date = new Date();
+        this.user_id = order.user_id,
+        this.status = order.status,
+        this.created_date = new Date();
 }
 
-Order.createOrder = function createOrder(newOrder,result) {
-    sql.query("insert into orders set ? ", newOrder, function (err, res) {
-        if (err) {
-            console.log("Error : ", err);
-            result(null, res);
-        } else {
+Order.createOrder = (newOrder, result) => {
+    return new Promise((resolve, reject) => {
+        sql.query("insert into orders set ? ", newOrder, (err, res) => {
+            if (err) {
+                console.log("Error : ", err);
+                reject(err);
+            } else {
                 console.log(res);
-                result(null, res);          
-        }
-    });
-}
-
-Order.getOrderById = function getOrderById(order_id, result) {
-    sql.query("select * from orders where order_id = ?", [order_id], function (err, res) {
-        if (err) {
-            console.log("Error : ", err);
-            result(null, err);
-        } else {
-            console.log("order : ", res);
-            result(null, res);
-        }
+                resolve(res);
+            }
+        });
     });
 
 }
 
-Order.getAllOrdersByUserId = function getAllOrdersByUserId(user_id, result) {
-    sql.query("select * from orders where user_id=?", [user_id], function (err, res) {
-        if (err) {
-            console.log("Error : ", err);
-            result(null, err);
-        } else {
-            console.log("orders : ", res);
-            result(null, res);
-        }
+Order.getOrderById = (order_id, result) => {
+    return new Promise((resolve, reject) => {
+        sql.query("select * from orders where order_id = ?", [order_id], (err, res) => {
+            if (err) {
+                console.log("Error : ", err);
+                reject(err);
+            } else {
+                console.log("order : ", res);
+                resolve(res);
+            }
+        });
     });
 }
 
-Order.getOrdersByUserAndStatus = function getOrdersByUserAndStatus(user_id,status, result) {
-    sql.query("select * from orders where user_id=? and status=?", [user_id,status], function (err, res) {
-        if (err) {
-            console.log("Error : ", err);
-            result(null, err);
-        } else {
-            console.log("orders by user and status : ", res);
-            result(null, res);
-        }
+Order.getAllOrdersByUserId = (user_id, result) => {
+    return new Promise((resolve, reject) => {
+        sql.query("select * from orders where user_id=?", [user_id], (err, res) => {
+            if (err) {
+                console.log("Error : ", err);
+                reject(err);
+            } else {
+                console.log("orders : ", res);
+                resolve(res);
+            }
+        });
     });
+
+}
+
+Order.getOrdersByUserAndStatus = (user_id, status, result) => {
+    return new Promise((resolve, reject) => {
+        sql.query("select * from orders where user_id=? and status=?", [user_id, status], (err, res) => {
+            if (err) {
+                console.log("Error : ", err);
+                reject(err);
+            } else {
+                console.log("orders by user and status : ", res);
+                resolve(err);
+            }
+        });
+    });
+
 }
 
 
-module.exports= Order;
+module.exports = Order;
