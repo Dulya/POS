@@ -1,6 +1,6 @@
 'use strict';
 var express = require("express");
-var Order = require('../model/order_model.js');
+var Order = require('../models/order_model.js');
 
 exports.createNewOrder = (req, res) => {
     let newOrder = new Order(req.body);

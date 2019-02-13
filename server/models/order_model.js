@@ -60,7 +60,7 @@ Order.getOrdersByUserAndStatus = (user_id, status, result) => {
                 reject(err);
             } else {
                 console.log("orders by user and status : ", res);
-                resolve(err);
+                resolve(res);
             }
         });
     });

@@ -5,9 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require("cors");
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var testRouter=require("./routes/test");
+var userRouter=require("./routes/user");
 var orderRouter=require("./routes/order");
 var orderitemRouter=require("./routes/orderitem");
 
@@ -24,10 +22,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use("/test", testRouter);
+app.use("/user", userRouter);
 app.use("/order", orderRouter);
 app.use("/orderitem", orderitemRouter);
 
@@ -46,6 +41,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+app.set('superSecret', 'sdfagregaergergre'); 
 
 module.exports = app;
 console.log("started");
