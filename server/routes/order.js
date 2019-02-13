@@ -2,18 +2,18 @@ var express=require("express");
 var router=express.Router();
 var orderController=require('../controller/order_controller');
 
-router.route('/orders')
+router.route('/')
     .post(orderController.createNewOrder);
 
-router.route('/orders/:orderId')
-    .post(orderController.retreiveOrderById);
+router.route('/:order_id')
+    .get(orderController.retreiveOrderById);
     
 
-router.route('/orders/:userId')
+router.route('/user/:user_id')
     .get(orderController.retreiveOrderByUserid);
 
-router.route('/orders/:status')
-    .get(orderController.retreiveOrderByUserid);
+router.route('/status/:user_id/:status')
+    .get(orderController.retreiveOrdersByUserAndStatus);
     
 
 module.exports = router;

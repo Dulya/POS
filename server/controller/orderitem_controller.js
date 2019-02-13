@@ -1,9 +1,9 @@
 'use strict';
 var express = require("express");
-var OrderDetail = require('../model/orderdetail_model.js');
+var OrderItem = require('../model/orderitem_model.js');
 
 exports.addOrderDetails = function (req, res) {
-    var newOrderDetail = new OrderDetail(req.body);
+    var newOrderDetail = new OrderItem(req.body);
     if (!newOrderDetail.order_id) {
         res.status(400).send({ error: true, message: "Cannot add order details into order!" });
     } else {
@@ -17,7 +17,7 @@ exports.addOrderDetails = function (req, res) {
 }
 
 exports.getOrderDetailsByOrder=function(req,res){
-    OrderDetail.getOrderDetailsByOrder(req.params.order_id, function (err, orderdetail) {
+    OrderItem.getOrderDetailsByOrder(req.params.order_id, function (err, orderdetail) {
         if (err) {
             res.send(err);
         }
@@ -26,7 +26,7 @@ exports.getOrderDetailsByOrder=function(req,res){
 }
 
 exports.removeOrderItems=function(req,res){
-    OrderDetail.removeOrderItems(req.params.orderdetail_id, function (err, orderdetail) {
+    OrderItem.removeOrderItems(req.params.orderdetail_id, function (err, orderdetail) {
         if (err) {
             res.send(err);
         }
@@ -35,7 +35,7 @@ exports.removeOrderItems=function(req,res){
 }
 
 exports.updateOrderItems=function(req,res){
-    OrderDetail.updateOrderItems(req.params.orderdetail_id, function (err, orderdetail) {
+    OrderItem.updateOrderItems(req.params.orderdetail_id, function (err, orderdetail) {
         if (err) {
             res.send(err);
         }

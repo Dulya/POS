@@ -1,5 +1,5 @@
 'user strict';
-var sql = require('./db_connection.js');
+var sql = require('../utils/db_connection.js');
 
 var Order = function (order) {
     this.order_id = order.order_id,
@@ -45,13 +45,13 @@ Order.getAllOrdersByUserId = function getAllOrdersByUserId(user_id, result) {
     });
 }
 
-Order.getOrdersByUserAndStatus = function getOrdersByStatus(user_id,status, result) {
-    sql.query("select * from orders where user_id=? and status=?", status, function (err, res) {
+Order.getOrdersByUserAndStatus = function getOrdersByUserAndStatus(user_id,status, result) {
+    sql.query("select * from orders where user_id=? and status=?", [user_id,status], function (err, res) {
         if (err) {
             console.log("Error : ", err);
             result(null, err);
         } else {
-            console.log("orders by status : ", res);
+            console.log("orders by user and status : ", res);
             result(null, res);
         }
     });
