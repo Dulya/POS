@@ -1,0 +1,13 @@
+create table item(item_id varchar(255) primary key not null, item_name varchar(255) not null,price double not null, description varchar(255));
+
+create table user(user_name varchar(255) primary key not null, password varchar(255) not null);
+
+create table orders(order_id varchar(255) primary key not null,user_name varchar(255) not null,status varchar(255) not null, created_date Date not null,foreign key(user_name) references user(user_name));
+
+create table order_item(orderitem_id varchar(255) primary key not null,order_id varchar(255) not null,item_id varchar(255) not null,quantity int(11) not null,unit_price double not null,foreign key(order_id) references orders(order_id),foreign key(item_id) references item(item_id));
+
+insert into user values("admin","abc");
+insert into user values("john","123");
+
+insert into orders values("O00001","john","open","2019-01-20");
+

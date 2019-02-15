@@ -1,8 +1,8 @@
 'user strict';
 var sql = require('../utils/db_connection.js');
 
-var OrderItem = function (orderitem){
-    this.orderdetail_id = orderitem.orderitem_id,
+var OrderItem = function (orderitem) {
+    this.orderitem_id = orderitem.orderitem_id,
         this.order_id = orderitem.order_id,
         this.item_id = orderitem.item_id,
         this.quantity = orderitem.quantity,
@@ -25,8 +25,8 @@ OrderItem.addOrderItem = (orderdetail, result) => {
 }
 
 OrderItem.getOrderItemsByOrder = (order_id, result) => {
-    return new Promise((resolve,reject) => {
-        sql.query("select * from order_item where order_id = ?", order_id, (err, res) => {
+    return new Promise((resolve, reject) => {
+        sql.query("select * from order_item where order_id = ?", [order_id], (err, res) => {
             if (err) {
                 console.log("Error : ", err);
                 reject(err);
@@ -36,12 +36,12 @@ OrderItem.getOrderItemsByOrder = (order_id, result) => {
             }
         });
     });
-    
+
 }
 
-OrderItem.removeOrderItem = (orderdetail_id, result) => {
-    return new Promise((resolve,reject) => {
-        sql.query("delete from  order_item where orderitem_id = ? ", orderdetail_id, (err, res) => {
+OrderItem.removeOrderItem = (orderitem_id, result) => {
+    return new Promise((resolve, reject) => {
+        sql.query("delete from  order_item where orderitem_id = ? ", [orderitem_id], (err, res) => {
             if (err) {
                 console.log("Error : ", err);
                 reject(err);
@@ -51,12 +51,12 @@ OrderItem.removeOrderItem = (orderdetail_id, result) => {
             }
         });
     });
-    
+
 }
 
-OrderItem.updateOrderItem = (orderdetail, result) => {
-    return new Promise((resolve,reject) => {
-        sql.query("update order_item where orderitem_id = ? set ?", orderdetail.orderdetail_id, orderdetail, (err, res) => {
+OrderItem.updateItemQuantity = (orderitem, result) => {
+    return new Promise((resolve, reject) => {
+        sql.query("update order_item set quantity = ? where orderitem_id = ?", [orderitem.quantity,orderitem.orderitem_id], (err, res) => {
             if (err) {
                 console.log("Error : ", err);
                 reject(err);
@@ -66,7 +66,7 @@ OrderItem.updateOrderItem = (orderdetail, result) => {
             }
         });
     });
-    
+
 }
 
 

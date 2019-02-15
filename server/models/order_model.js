@@ -1,16 +1,16 @@
 'user strict';
 var sql = require('../utils/db_connection.js');
 
-var Order = function (order){
+var Order = function (order) {
     this.order_id = order.order_id,
-        this.user_id = order.user_id,
+        this.user_name = order.user_name,
         this.status = order.status,
         this.created_date = new Date();
 }
 
 Order.createOrder = (newOrder, result) => {
     return new Promise((resolve, reject) => {
-        sql.query("insert into orders set ? ", newOrder, (err, res) => {
+        sql.query("insert into orders values (?,?,?,?)", [newOrder.order_id,newOrder.user_name,newOrder.status,newOrder.created_date], (err, res) => {
             if (err) {
                 console.log("Error : ", err);
                 reject(err);
@@ -37,9 +37,9 @@ Order.getOrderById = (order_id, result) => {
     });
 }
 
-Order.getAllOrdersByUserId = (user_id, result) => {
+Order.getAllOrdersByUserName = (user_name, result) => {
     return new Promise((resolve, reject) => {
-        sql.query("select * from orders where user_id=?", [user_id], (err, res) => {
+        sql.query("select * from orders where user_name=?", [user_name], (err, res) => {
             if (err) {
                 console.log("Error : ", err);
                 reject(err);
@@ -52,9 +52,9 @@ Order.getAllOrdersByUserId = (user_id, result) => {
 
 }
 
-Order.getOrdersByUserAndStatus = (user_id, status, result) => {
+Order.getOrdersByUserAndStatus = (user_name, status, result) => {
     return new Promise((resolve, reject) => {
-        sql.query("select * from orders where user_id=? and status=?", [user_id, status], (err, res) => {
+        sql.query("select * from orders where user_name=? and status=?", [user_name, status], (err, res) => {
             if (err) {
                 console.log("Error : ", err);
                 reject(err);

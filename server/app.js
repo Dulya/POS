@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require("cors");
 
-var authenticateRouter=require("./routes/authenticate");
+var userRouter=require("./routes/user");
 var orderRouter=require("./routes/order");
 var orderitemRouter=require("./routes/orderitem");
 
@@ -22,9 +22,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use("/authenticate", authenticateRouter);
-app.use("/order", orderRouter);
-app.use("/orderitem", orderitemRouter);
+app.use("/user",userRouter);
+app.use("/api",require('./middlewares/authenticate.js'));
+app.use("/api/order", orderRouter);
+app.use("/api/orderitem", orderitemRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

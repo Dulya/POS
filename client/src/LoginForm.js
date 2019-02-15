@@ -1,16 +1,15 @@
 import React from 'react';
 //import ReactDOM from 'react-dom';
 import axios from 'axios';
-
-
+import { Redirect } from 'react-router';
 
 
 class LoginForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-                username: "",
-                password: "",       
+            username: "",
+            password: "",
         };
         this.updateUsername = this.updateUsername.bind(this);
         this.updatePassword = this.updatePassword.bind(this);
@@ -18,69 +17,73 @@ class LoginForm extends React.Component {
 
     }
 
-        handleSubmit(e){
-            e.preventDefault();
-            let data = {
-                username: this.state.username,
-                password: this.state.password
-            }
-            //console.log(data.username);
-            //console.log(data.password);
-            axios.post('/test', data)
-                .then(function (response) {
-                    console.log(response);
-
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+    handleSubmit(e) {
+        e.preventDefault();
+        let data = {
+            user_name: this.state.username,
+            password: this.state.password,
         }
+        axios.post('/user/login', data)
+            .then((user) =>{
+                const url = '/api/order/user/' + data.user_name;
+                axios.get(url)
+                    .then( (orders) => {
+                        console.log(orders);
+                        this.props.history.push("/OrderListView");
+                        //redirect
+                        //return <Redirect to="/OrderListView" push />
+                    })
+                    .catch(function (error) {
+                        console.log("Error : ", error);
+                    });
+            })
+            .catch(function (error) {
+                console.log("Error Log In. Please Try Again.", error);
+            });
+    }
 
+    updateUsername(e) {
+        e.preventDefault();
+        this.setState({ username: e.target.value })
+    }
 
+    updatePassword(e) {
+        e.preventDefault();
+        this.setState({ password: e.target.value })
+    }
 
-        /*componentWillMount() {
-            this.callAPI();
-        }*/
+    render() {
+        return (
 
-        updateUsername(e){
-            e.preventDefault();
-            this.setState({ username: e.target.value } )
-        }
-
-        updatePassword(e){
-            e.preventDefault();
-            this.setState({ password: e.target.value } )
-        }
-
-        render(){
-            return (
-
-                <div className="outer-wrapper">
-                    <div className="outer-box">
-                        <div className="header">
-                            Sign In
+            <div className="outer-wrapper">
+                <div className="outer-box">
+                    <div className="header">
+                        Sign In
                     </div>
-                        <div className="inner-box">
-                            <form onSubmit={this.handleSubmit}>
-                                <div className="form-group">
-                                    <label>User Name  </label>
-                                    <input id="userinput" name="username" className="input-group-text" type="text" value={this.state.username || ''} onChange={this.updateUsername} />
-                                </div>
+                    <div className="inner-box">
+                        <form onSubmit={this.handleSubmit}>
+                            <div className="form-group">
+                                <label>User Name  </label>
+                                <input id="userinput" name="username" className="input-group-text" type="text" value={this.state.username || ''} onChange={this.updateUsername} />
+                            </div>
 
-                                <div className="form-group">
-                                    <label>Password  </label>
-                                    <input id="password" name="password" className="input-group-text" type="password" value={this.state.password || ''} onChange={this.updatePassword} />
+                            <div className="form-group">
+                                <label>Password  </label>
+                                <input id="password" name="password" className="input-group-text" type="password" value={this.state.password || ''} onChange={this.updatePassword} />
 
-                                </div>
-                                <input id="submit-button" type="submit" value="Sign In" className="btn btn-info" />
+                            </div>
+                            <input id="submit-button" type="submit" value="Sign In" className="btn btn-info" />
 
-                            </form>
-                        </div>
+                        </form>
                     </div>
                 </div>
+            </div>
 
-            );
-        }
-
+        );
     }
-    export default LoginForm;
+
+}
+
+export default LoginForm;
+
+
