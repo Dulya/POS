@@ -11,3 +11,8 @@ insert into user values("john","123");
 
 insert into orders values("O00001","john","open","2019-01-20");
 
+alter table user add column user_type varchar(255) not null;
+update user set user_type="admin" where user_name="admin";
+update user set user_type="normal" where user_name="john";
+
+

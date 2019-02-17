@@ -8,9 +8,16 @@ router.route('/')
 router.route('/:order_id')
     .get(orderController.retreiveOrderById);
 
+const permissionAuth = (req, res, next) => {
+    if(req.user_type === 'admin' || (req.params.user_name && req.params.user_name ===req.user_name)){
+        next();
+    }else{
+        res.status(400);
+        res.send({message :"Unauthorized acess"});
+    }
+}
 
-router.route('/user/:user_name')
-    .get(orderController.retreiveOrderByUserName);
+router.get('/user/:user_name', permissionAuth, orderController.retreiveOrderByUserName);
 
 router.route('/status/:user_id/:status')
     .get(orderController.retreiveOrdersByUserAndStatus);

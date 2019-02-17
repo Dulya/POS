@@ -1,7 +1,6 @@
 import React from 'react';
 //import ReactDOM from 'react-dom';
 import axios from 'axios';
-import { Redirect } from 'react-router';
 
 
 class LoginForm extends React.Component {
@@ -25,17 +24,7 @@ class LoginForm extends React.Component {
         }
         axios.post('/user/login', data)
             .then((user) =>{
-                const url = '/api/order/user/' + data.user_name;
-                axios.get(url)
-                    .then( (orders) => {
-                        console.log(orders);
-                        this.props.history.push("/OrderListView");
-                        //redirect
-                        //return <Redirect to="/OrderListView" push />
-                    })
-                    .catch(function (error) {
-                        console.log("Error : ", error);
-                    });
+                this.props.history.push("/Orders");
             })
             .catch(function (error) {
                 console.log("Error Log In. Please Try Again.", error);

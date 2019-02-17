@@ -1,11 +1,21 @@
 import React from 'react';
+import axios from 'axios';
 
 class OrderListView extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            orders: "",
-        };
+    }
+
+    componentDidMount(){
+        const url = '/api/order/user/' + data.user_name;
+        axios.get(url)
+            .then( (orders) => {
+                console.log(orders);
+                this.props.history.push("/Orders");
+            })
+            .catch(function (error) {
+                this.props.history.push('./Login');
+            });
     }
 
     render() {

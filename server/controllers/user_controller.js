@@ -4,13 +4,13 @@ var config = require('../config.js');
 var User = require('../models/user_model');
 
 exports.logInUser = (req, res) => {
-    
-    User.authenticateUserName(req.body.user_name)
+
+    User.authenticateUser(req.body)
         .then(user => {
-            if (req.body.password === user[0].password) {
 
                 const payload = {
-                    name: user[0].user_name
+                    user_name: user[0].user_name,
+                    user_type:user[0].user_type
                 };
 
                 var token = jwt.sign(payload, config.JWT_SECRET, {
@@ -20,14 +20,11 @@ exports.logInUser = (req, res) => {
                         console.log(err);
                     } else {
 
-                        console.log("token :", token);
+                        //console.log("token :", token);
                         res.cookie('token', token, { httpOnly: true }).sendStatus(200);
                     }
                 });
 
-            } else {
-                res.json({ success: false, message: "Password is incorrect" });
-            }
         })
         .catch(err => {
             res.send(err);

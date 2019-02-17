@@ -8,7 +8,7 @@ module.exports = (req, res, next) => {
         return res.status("401").json({ message: "No token is provided" });
     } else {
 
-        req.user = jwt.verify(token, config.JWT_SECRET, (err, decoded) => {
+        jwt.verify(token, config.JWT_SECRET, (err, decoded) => {
             if (err) {
                 return res.status(401).json({
                     error: {
@@ -17,6 +17,7 @@ module.exports = (req, res, next) => {
                 });
             } else {
                 console.log("success");
+                req.user=decoded;
                 next();
             }
         });

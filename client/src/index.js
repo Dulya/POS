@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Route, withRouter } from 'react-router';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './index.css';
 import './LoginForm.css';
 import './OrderListView.css';
@@ -10,11 +10,15 @@ import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
-export default withRouter(
-    <Route component={OrderView} path="./OrderListView" />
+ReactDOM.render(
+    <Router>
+        <div>
+        <Route component={LoginForm} path="/Login" />
+        <Route component={OrderView} path="/" />
+        <Route component={OrderView} path="/Orders" />
+        </div>      
+    </Router>, document.getElementById('root')
 );
-
-ReactDOM.render(<LoginForm/>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
