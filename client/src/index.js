@@ -27,9 +27,9 @@ const store = createStore(allReducers, composeEnhancer(middleware));
 ReactDOM.render(<Provider store={store}>
     <Router>
         <div>
-            <Route component={LoginForm} path="/Login" />
-            <Route component={OrderView} path="/" />
-            <Route component={OrderView} path="/Orders" />
+            <Route exact component={OrderView} path="/" />
+            <Route component={LoginForm} path="/login" />
+            <Route component={OrderView} path="/orders" />
         </div>
     </Router></Provider >, document.getElementById('root')
 );

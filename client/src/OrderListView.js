@@ -10,12 +10,9 @@ class OrderListView extends React.Component {
 
     componentDidMount() {
         const { onRetrieveOrders } = this.props;
-        onRetrieveOrders(this.props.user.user_name)
-            .then((orders) => {
-                this.props.history.push("/Orders");
-            })
+        onRetrieveOrders()
             .catch((error) => {
-                this.props.history.push('./Login');
+                this.props.history.push('/login');
             });
     }
 
@@ -35,19 +32,20 @@ class OrderListView extends React.Component {
                             </tr>
                         </thead>
                         <tbody >
-                            <tr>
-                                <th scope="col">
-                                    <div className="custom-control custom-checkbox">
-                                        <input type="checkbox" className="custom-control-input" id="tableDefaultCheck1" />
-                                        <label className="custom-control-label" htmlFor="tableDefaultCheck1"> 1</label>
-                                    </div>
-                                </th>
-                                <td>{this.props.orders.order_id}</td>
-                                <td>{this.props.orders.user_name}</td>
-                                <td>{this.props.orders.status}</td>
-                                <td>{this.props.orders.created_date}</td>
-
-                            </tr>
+                            { this.props.orders.map((order, index) => 
+                                <tr key={index}> 
+                                    <th scope="col">
+                                        <div className="custom-control custom-checkbox">
+                                            <input type="checkbox" className="custom-control-input" id="tableDefaultCheck1" />
+                                            <label className="custom-control-label" htmlFor="tableDefaultCheck1"> 1</label>
+                                        </div>
+                                    </th>
+                                    <td>{order.order_id}</td>
+                                    <td>{order.user_name}</td>
+                                    <td>{order.status}</td>
+                                    <td>{order.created_date}</td>
+                                </tr>
+                            )}
                         </tbody>
                     </table>
                 </div>

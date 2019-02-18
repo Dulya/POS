@@ -1,15 +1,15 @@
 import axios from 'axios';
 export const RETRIVED_ORDERS = 'orders:retrievedOrders';
 
-export default function RetrieveOrders(user_name) {
+export default function RetrieveOrders() {
     return (dispatch) => {
-        const url = '/api/order/user/' + user_name;
+        const url = '/api/order/user';
         return axios.get(url)
             .then(orders => {
+                console.log(orders.data);
                 dispatch({
                     type: RETRIVED_ORDERS,
-                    //payload: orders
-                    payload: {order_id:'O00001',user_name:'john',status:'open',created_date:'2019-01-20'}
+                    payload: orders.data
                 });
                 
                 return orders;

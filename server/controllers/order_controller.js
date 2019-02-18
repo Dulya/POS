@@ -37,6 +37,17 @@ exports.retreiveOrderByUserName = (req, res) => {
         });
 }
 
+exports.retreiveOrderByLoggedInUser = (req, res) => {
+    console.log(req.user.user_name);
+    Order.getAllOrdersByUserName(req.user.user_name)
+        .then((order) => {
+            res.json(order);
+        })
+        .catch((err) => {
+            res.send(err);
+        });
+}
+
 exports.retreiveOrdersByUserAndStatus = (req, res) => {
     Order.getOrdersByUserAndStatus(req.params.user_name, req.params.status)
         .then((order) => {

@@ -20,7 +20,7 @@ class LoginForm extends React.Component {
         e.preventDefault();
         this.props.onLoginUser(this.state)
             .then((user) => {
-                this.props.history.push("/Orders");
+                this.props.history.push("/orders");
             })
             .catch(err => {
                 console.log("Error Log In. Please Try Again.", err);
