@@ -9,7 +9,7 @@ router.route('/:order_id')
     .get(orderController.retreiveOrderById);
 
 const permissionAuth = (req, res, next) => {
-    if(req.user_type === 'admin' || (req.params.user_name && req.params.user_name ===req.user_name)){
+    if(req.user_type === 'admin' || (req.params.user_name && req.params.user_name ===req.user.user_name)){
         next();
     }else{
         res.status(400);

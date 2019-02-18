@@ -9,15 +9,29 @@ import OrderView from './OrderListView';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import { applyMiddleware, createStore, compose, combineReducers } from 'redux';
+import thunk from 'redux-thunk';
+import { Provider } from 'react-redux';
+import userReducer from './reducers/userReducer';
+import orderReducer from './reducers/orderReducer';
+const middleware = applyMiddleware(thunk);
 
-ReactDOM.render(
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const allReducers = combineReducers({
+    user:userReducer,
+    orders:orderReducer
+});
+const store = createStore(allReducers, composeEnhancer(middleware));
+
+
+ReactDOM.render(<Provider store={store}>
     <Router>
         <div>
-        <Route component={LoginForm} path="/Login" />
-        <Route component={OrderView} path="/" />
-        <Route component={OrderView} path="/Orders" />
-        </div>      
-    </Router>, document.getElementById('root')
+            <Route component={LoginForm} path="/Login" />
+            <Route component={OrderView} path="/" />
+            <Route component={OrderView} path="/Orders" />
+        </div>
+    </Router></Provider >, document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

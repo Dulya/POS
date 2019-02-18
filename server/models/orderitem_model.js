@@ -13,10 +13,10 @@ OrderItem.addOrderItem = (orderdetail, result) => {
     return new Promise((resolve, reject) => {
         sql.query("insert into  order_item set ? ", orderdetail, (err, res) => {
             if (err) {
-                console.log("Error : ", err);
+                //console.log("Error : ", err);
                 reject(err);
             } else {
-                console.log(res);
+                //console.log(res);
                 resolve(res);
             }
         });
@@ -56,7 +56,7 @@ OrderItem.removeOrderItem = (orderitem_id, result) => {
 
 OrderItem.updateItemQuantity = (orderitem, result) => {
     return new Promise((resolve, reject) => {
-        sql.query("update order_item set quantity = ? where orderitem_id = ?", [orderitem.quantity,orderitem.orderitem_id], (err, res) => {
+        sql.query("update order_item set quantity = ? where orderitem_id = ?", [orderitem.quantity, orderitem.orderitem_id], (err, res) => {
             if (err) {
                 console.log("Error : ", err);
                 reject(err);

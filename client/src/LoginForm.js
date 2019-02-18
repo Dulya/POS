@@ -1,13 +1,13 @@
+import { connect } from 'react-redux';
 import React from 'react';
-//import ReactDOM from 'react-dom';
-import axios from 'axios';
+import logInUser from './actions/userActions';
 
 
 class LoginForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: "",
+            user_name: "",
             password: "",
         };
         this.updateUsername = this.updateUsername.bind(this);
@@ -18,22 +18,18 @@ class LoginForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        let data = {
-            user_name: this.state.username,
-            password: this.state.password,
-        }
-        axios.post('/user/login', data)
-            .then((user) =>{
+        this.props.onLoginUser(this.state)
+            .then((user) => {
                 this.props.history.push("/Orders");
             })
-            .catch(function (error) {
-                console.log("Error Log In. Please Try Again.", error);
+            .catch(err => {
+                console.log("Error Log In. Please Try Again.", err);
             });
     }
 
     updateUsername(e) {
         e.preventDefault();
-        this.setState({ username: e.target.value })
+        this.setState({ user_name: e.target.value })
     }
 
     updatePassword(e) {
@@ -53,7 +49,7 @@ class LoginForm extends React.Component {
                         <form onSubmit={this.handleSubmit}>
                             <div className="form-group">
                                 <label>User Name  </label>
-                                <input id="userinput" name="username" className="input-group-text" type="text" value={this.state.username || ''} onChange={this.updateUsername} />
+                                <input id="userinput" name="username" className="input-group-text" type="text" value={this.state.user_name || ''} onChange={this.updateUsername} />
                             </div>
 
                             <div className="form-group">
@@ -64,6 +60,7 @@ class LoginForm extends React.Component {
                             <input id="submit-button" type="submit" value="Sign In" className="btn btn-info" />
 
                         </form>
+                        {this.props.user}
                     </div>
                 </div>
             </div>
@@ -73,6 +70,11 @@ class LoginForm extends React.Component {
 
 }
 
-export default LoginForm;
+
+const mapActionsToProps = {
+    onLoginUser: logInUser
+}
+
+export default connect(null, mapActionsToProps)(LoginForm);
 
 

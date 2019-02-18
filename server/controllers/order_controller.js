@@ -28,7 +28,6 @@ exports.retreiveOrderById = (req, res) => {
 }
 
 exports.retreiveOrderByUserName = (req, res) => {
-    console.log("here");
     Order.getAllOrdersByUserName(req.params.user_name)
         .then((order) => {
             res.json(order);

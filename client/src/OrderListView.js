@@ -1,22 +1,26 @@
 import React from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import RetrieveOrders from './actions/orderActions';
+
 
 class OrderListView extends React.Component {
     constructor(props) {
         super(props);
     }
 
-    componentDidMount(){
-        const url = '/api/order/user/' + data.user_name;
-        axios.get(url)
-            .then( (orders) => {
-                console.log(orders);
+    componentDidMount() {
+        const {onRetrieveOrders} = this.props;
+        console.log("this is user name : ",this.props.user.user_name);
+        onRetrieveOrders(this.props.user.user_name)
+            .then((orders) => {
+                console.log("orders :", orders);
                 this.props.history.push("/Orders");
             })
-            .catch(function (error) {
+            .catch((error) => {
                 this.props.history.push('./Login');
             });
     }
+
 
     render() {
         return (
@@ -52,7 +56,7 @@ class OrderListView extends React.Component {
                 <div className="orderdetail-wrapper">
                     <table className="table table-hover table table-bordered">
                         <thead className="black white-text">
-                            <tr>              
+                            <tr>
                                 <th scope="col">Item Id</th>
                                 <th scope="col">Item Name</th>
                                 <th scope="col">Quantity</th>
@@ -60,7 +64,7 @@ class OrderListView extends React.Component {
                             </tr>
                         </thead>
                         <tbody >
-                            <tr>   
+                            <tr>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -76,4 +80,17 @@ class OrderListView extends React.Component {
 
 }
 
-export default OrderListView;
+const mapStateToProps = state => {
+    console.log(state);
+    return {
+        user: state.user,
+        orders: state.orders
+    }
+}
+
+const mapActionsToProps = {
+    onRetrieveOrders: RetrieveOrders
+}
+
+
+export default connect(mapStateToProps, mapActionsToProps)(OrderListView);
