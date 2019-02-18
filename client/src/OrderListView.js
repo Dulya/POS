@@ -9,11 +9,9 @@ class OrderListView extends React.Component {
     }
 
     componentDidMount() {
-        const {onRetrieveOrders} = this.props;
-        console.log("this is user name : ",this.props.user.user_name);
+        const { onRetrieveOrders } = this.props;
         onRetrieveOrders(this.props.user.user_name)
             .then((orders) => {
-                console.log("orders :", orders);
                 this.props.history.push("/Orders");
             })
             .catch((error) => {
@@ -44,10 +42,11 @@ class OrderListView extends React.Component {
                                         <label className="custom-control-label" htmlFor="tableDefaultCheck1"> 1</label>
                                     </div>
                                 </th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{this.props.orders.order_id}</td>
+                                <td>{this.props.orders.user_name}</td>
+                                <td>{this.props.orders.status}</td>
+                                <td>{this.props.orders.created_date}</td>
+
                             </tr>
                         </tbody>
                     </table>
@@ -81,7 +80,6 @@ class OrderListView extends React.Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state);
     return {
         user: state.user,
         orders: state.orders
@@ -91,6 +89,5 @@ const mapStateToProps = state => {
 const mapActionsToProps = {
     onRetrieveOrders: RetrieveOrders
 }
-
 
 export default connect(mapStateToProps, mapActionsToProps)(OrderListView);
