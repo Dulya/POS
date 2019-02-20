@@ -14,6 +14,7 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import userReducer from './reducers/userReducer';
 import orderReducer from './reducers/orderReducer';
+import {validateUserDetails} from './actions/userActions';
 const middleware = applyMiddleware(thunk);
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -21,8 +22,8 @@ const allReducers = combineReducers({
     user:userReducer,
     orders:orderReducer
 });
-const store = createStore(allReducers, composeEnhancer(middleware));
 
+const store = createStore(allReducers, composeEnhancer(middleware));
 
 ReactDOM.render(<Provider store={store}>
     <Router>
@@ -34,8 +35,13 @@ ReactDOM.render(<Provider store={store}>
     </Router></Provider >, document.getElementById('root')
 );
 
+store.dispatch(validateUserDetails());
+
+
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+
 

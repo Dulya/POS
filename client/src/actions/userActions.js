@@ -1,14 +1,15 @@
 import axios from 'axios';
-export const LOGGEDIN_USER = 'users:loggedInUser';
+export const VALIDATE_USER = 'users:validateUser';
 
-export default function logInUser(loggedUser) {
-    return (dispatch) => {
-        return axios.post('/user/login', loggedUser)
+
+export function validateUserDetails() {
+    return (dispatch) => {  
+        return axios.get('/api/session')
             .then(user => {
-                console.log(user);
+                console.log("this is user :",user.data);
                 dispatch({
-                    type: LOGGEDIN_USER,
-                    payload: {user_name:'john',password:'123'}
+                    type: VALIDATE_USER,
+                    payload: user.data
                 });
                 return user;
             })

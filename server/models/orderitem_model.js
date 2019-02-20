@@ -6,7 +6,8 @@ var OrderItem = function (orderitem) {
         this.order_id = orderitem.order_id,
         this.item_id = orderitem.item_id,
         this.quantity = orderitem.quantity,
-        this.unit_price = orderitem.unit_price;
+        this.item_name=orderitem.item_data.item_name    
+        this.item_price=orderitem.item_data.item_price 
 }
 
 OrderItem.addOrderItem = (orderdetail, result) => {
@@ -26,7 +27,8 @@ OrderItem.addOrderItem = (orderdetail, result) => {
 
 OrderItem.getOrderItemsByOrder = (order_id, result) => {
     return new Promise((resolve, reject) => {
-        sql.query("select * from order_item where order_id = ?", [order_id], (err, res) => {
+        //(select * from order_item where order_id=?) as t1 union (select distinct item_name,distinct price from item join t1 on item.item_id=t1.item_id )
+        sql.query("select distinct * from (select  * from order_item where order_id=?) as t1 , (select distinct item_name, price from item join order_item on order_item.item_id=item.item_id) as t2", [order_id], (err, res) => {
             if (err) {
                 console.log("Error : ", err);
                 reject(err);

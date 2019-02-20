@@ -5,5 +5,48 @@
 
 .orderdetail-wrapper{
     width:80%;
-    margin:100px auto auto auto;
+    margin:10px auto auto auto;
 }
+
+.orderdetail-header{
+    width:80%;
+    margin:100px auto 0px auto;
+    height:50px;
+    background: transparent;
+    border:none;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    padding:5px 5px 5px 0px;
+}
+
+.input_spinner{
+    width:120px;
+    text-align: center;
+}
+
+.remove_btn {
+    background-color: transparent; 
+    border:#cccccc 1px solid; 
+    color: DodgerBlue; 
+    margin-left: 25px; 
+    font-size: 20px; 
+    cursor: pointer; 
+  }
+
+  .add_cart_btn{
+    background-color: green; 
+    border:none; 
+    color:white; 
+    font-size: 20px; 
+    cursor: pointer; 
+  }
+  
+ 
+  .remove_btn:hover {
+    color: green;
+  }
+
+  .table_cell{
+      text-align: center;
+  }

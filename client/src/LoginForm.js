@@ -1,7 +1,5 @@
-import { connect } from 'react-redux';
 import React from 'react';
-import logInUser from './actions/userActions';
-
+import axios from 'axios';
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -18,8 +16,8 @@ class LoginForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.onLoginUser(this.state)
-            .then((user) => {
+        axios.post('/user/login', this.state)
+            .then((res) => {
                 this.props.history.push("/orders");
             })
             .catch(err => {
@@ -71,10 +69,7 @@ class LoginForm extends React.Component {
 }
 
 
-const mapActionsToProps = {
-    onLoginUser: logInUser
-}
 
-export default connect(null, mapActionsToProps)(LoginForm);
+export default LoginForm;
 
 

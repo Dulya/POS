@@ -5,9 +5,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require("cors");
 
-var userRouter=require("./routes/user");
-var orderRouter=require("./routes/order");
-var orderitemRouter=require("./routes/orderitem");
+var userRouter = require("./routes/user");
+var orderRouter = require("./routes/order");
+var orderitemRouter = require("./routes/orderitem");
 
 var app = express();
 
@@ -22,18 +22,24 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use("/user",userRouter);
-app.use("/api",require('./middlewares/authenticate.js'));
+app.use("/user", userRouter);
+app.use("/api", require('./middlewares/authenticate.js'));
+app.get('/api/session', (req, res) => {
+  res.send({
+    user_name:req.user.user_name,
+    user_type:req.user.user_type
+  });
+});
 app.use("/api/order", orderRouter);
 app.use("/api/orderitem", orderitemRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -43,7 +49,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.set('superSecret', 'sdfagregaergergre'); 
+app.set('superSecret', 'sdfagregaergergre');
 
 module.exports = app;
 console.log("started");

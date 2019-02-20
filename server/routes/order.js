@@ -15,7 +15,9 @@ const permissionAuth = (req, res, next) => {
 router.route('/').post(orderController.createNewOrder);
 
 router.route('/id/:order_id').get(orderController.retreiveOrderById);
+
 router.get('/user', orderController.retreiveOrderByLoggedInUser);
+
 router.get('/user/:user_name', permissionAuth, orderController.retreiveOrderByUserName);
 
 router.route('/status/:user_id/:status')

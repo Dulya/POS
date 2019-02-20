@@ -1,8 +1,8 @@
-import { LOGGEDIN_USER } from '../actions/userActions';
+import { VALIDATE_USER } from '../actions/userActions';
 
-export default function userReducer(state = '', { type, payload }) {
-    switch (type) {
-        case LOGGEDIN_USER: return payload;
+export default function userReducer(state = '', action) {
+    switch (action) {
+        case VALIDATE_USER: return action.payload;
         default:return state;
     }
 }
