@@ -3,8 +3,10 @@ export const HIDE_MODAL = 'modal:hideModal';
 
 
 export  function OpenModal(modalProps,modalType) {
+    console.log("In modal action",modalProps);
+    console.log("In modal action",modalType);
     return (dispatch) => {
-                dispatch({
+                return dispatch({
                     type: OPEN_MODAL,
                     modalProps,
                     modalType                 
@@ -14,8 +16,8 @@ export  function OpenModal(modalProps,modalType) {
 
 export function HideModal() {
     return (dispatch) => {
-                dispatch({
-                    type: HIDE_MODAL,                 
+                return dispatch({
+                    type: HIDE_MODAL,           
                 });               
     }
 }

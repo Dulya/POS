@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AlertModal = ({ closeModal, title, message }) => {
+const AlertModal = ({closeModal, title, message} ) => {
   return (
     <div className="modal-content">
       <div className="modal-header">

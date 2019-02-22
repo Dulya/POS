@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import ReactModal from 'react-modal';
-import { default as modalTypes } from './Modals';
+import alertModal from './Modals'
 
 const mapStateToProps = state => {
     return {
@@ -10,8 +10,9 @@ const mapStateToProps = state => {
 }
 
 const MODAL_TYPES = {
-    'alert': modalTypes.alertModal,
+    'alert': alertModal
 }
+
 
 class ModalContainer extends React.Component {
     constructor(props) {
@@ -23,9 +24,10 @@ class ModalContainer extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps !== this.props) {
+        if (nextProps.modal.modalProps !== this.props.modal.modalProps) {
+            console.log("open", nextProps.modal.modalProps.open);
             this.setState({
-                modalIsOpen: nextProps.modalProps.open
+                modalIsOpen: nextProps.modal.modalProps.open
             })
         }
     }
@@ -36,41 +38,32 @@ class ModalContainer extends React.Component {
 
     render() {
         if (!this.props.modal.modalType) {
-            console.log("in modal container",this.props.modal.modalType);
             return null
         }
-
+        
         const SpecifiedModal = MODAL_TYPES[this.props.modal.modalType]
 
         return (
 
             <div>
                 <ReactModal
-                    isOpen={this.state.modalIsOpen}
-                    onAfterOpen={this.afterOpenModal}
+                    isOpen={true}
                     onRequestClose={this.closeModal}
                     contentLabel="Example Modal"
                     ariaHideApp={false}
+                    overlayClassName="modal fade show"
+                    bodyOpenClassName="modal-open"
+                    className="modal-dialog modal-dialog-centered"
                 >
-
+                 
                     <SpecifiedModal
-                        closeModal={this.closeModal}
-                        {...this.props.modal.modalProps}
+                        closeModal={this.closeModal} title={this.props.modal.modalProps.title} message={this.props.modal.modalProps.message}
                     />
-
-                    <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
-                    <button onClick={this.closeModal}>close</button>
-                    <div>I am a modal</div>
-                    <form>
-                        <input />
-                        <button>tab navigation</button>
-                        <button>stays</button>
-                        <button>inside</button>
-                        <button>the modal</button>
-                    </form>
                 </ReactModal>
             </div>
         )
     }
 }
 export default connect(mapStateToProps, null)(ModalContainer)
+
+

@@ -1,21 +1,8 @@
-.backdropStyle{
-            position: 'fixed';
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: 'rgba(0,0,0,0.3)';
-            padding: 50;
-            width:700px;
-            height:800px;
-          };
- 
-.modalStyle{
-            background: 'red';
-            border: 1px solid black;
-            Width: 800;
-            height: 900;
-            margin: '0 auto';
-            padding: 30;
-           
-          };
+.modal-content{
+  top                   : 0;
+  left                  : 0;
+  right                 : auto;
+  bottom                : auto;
+  margin          : 25%;
+  background: black;
+}

@@ -14,7 +14,6 @@ class OrderListView extends React.Component {
             showTable: false,
             currentPage: 1,
             rowsPerPage: 5,
-            show:false
         }
         this.handleRowClick = this.handleRowClick.bind(this);
         this.updateQuantity = this.updateQuantity.bind(this);
@@ -37,7 +36,9 @@ class OrderListView extends React.Component {
     }
 
     handleRowClick(order_id) {
-        this.setState({ showTable: true })
+        this.setState({
+            showTable:true
+        });
         const { onRetrievOrderItems } = this.props;
         onRetrievOrderItems(order_id).catch((error) => {
             console.log("Error : ", error);
@@ -55,12 +56,10 @@ class OrderListView extends React.Component {
     }
 
     handleOpenModal(event) {
-        this.setState({
-            show:true
-        });
         const { onOpenModal } = this.props;
+        console.log("handleOpenModal");
         onOpenModal({
-          open: true,
+          openModal: true,
           title: 'Alert Modal',
           message: MESSAGE,
           closeModal: this.closeModal
@@ -97,7 +96,7 @@ class OrderListView extends React.Component {
 
         return (
             <div>
-
+                  <ModalContainer/>
                 <ul className="nav nav-tabs" id="tab_menu">
                     <li className="active"><a href="">All Orders</a>
 
@@ -175,7 +174,10 @@ class OrderListView extends React.Component {
                         </ul>
                     </div>
                 }
-                {this.state.show && <ModalContainer/>}
+                
+              
+              
+                
             </div>
         );
 
@@ -189,6 +191,7 @@ const mapStateToProps = state => {
         user: state.user,
         orders: state.orders,
         orderitems: state.orderitems,
+        modal:state.modal
     }
 }
 
