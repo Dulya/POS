@@ -1,16 +1,18 @@
 .orderlist-wrapper{
     width:80%;
-    margin:100px auto auto auto;
+    margin:50px auto auto auto;
+    font-size: 16px;
 }
 
 .orderdetail-wrapper{
     width:80%;
     margin:10px auto auto auto;
+    font-size: 16px;
 }
 
 .orderdetail-header{
     width:80%;
-    margin:100px auto 0px auto;
+    margin:40px auto 0px auto;
     height:50px;
     background: transparent;
     border:none;
@@ -35,11 +37,15 @@
   }
 
   .add_cart_btn{
-    background-color: green; 
+    background-color: DodgerBlue; 
     border:none; 
     color:white; 
-    font-size: 20px; 
+    font-size: 16px; 
     cursor: pointer; 
+  }
+
+  .add_cart_btn:hover{
+    background-color: green;  
   }
   
  
@@ -48,5 +54,44 @@
   }
 
   .table_cell{
-      text-align: center;
+    padding:7px !important;
+    vertical-align:center;
+    text-align: center;
   }
+
+  .table_row{
+    padding:0px;
+    margin:0px;
+}
+
+  #page-numbers {
+    list-style: none;
+    display: flex;
+    justify-content: right;
+    width:80%;
+    margin:10px auto auto auto;
+  }
+  
+  #page-numbers > li {
+    margin-right: 0.3em;
+    color: blue;
+    border:#999999 1px solid;
+    padding:3px 7px 3px 7px;
+    user-select: none;
+    cursor: pointer;
+    font-size:14px;
+  }
+
+  #tab_menu{
+    font-size:16px;
+  }
+
+  
+
+  
+
+  
+
+  
+
+  

@@ -2,10 +2,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  text-align: center;
-  min-height: 100vh;
-  
+  justify-items:center;
+  min-height:100vh;
+  margin-top:-10em;
+
 }
 
 .outer-box{
@@ -13,8 +13,7 @@
     display: flex;
     flex-direction: column;
     border:1px solid #bfbfbf;
-    border-radius: 25px;
-    
+    margin:auto;
 }
 
 .header{
@@ -23,10 +22,9 @@
     align-items: center;
     justify-content: center;
     width:100%;
-    background: #ffad33;
-    border-radius: 25px 25px 0px 0px; 
+    background: #d9d9d9;
     font-size:24px;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .inner-box{
@@ -38,24 +36,25 @@
     align-items: center; 
     text-align: center;
     background: white;
+    font-size: 16px;
 }
 
 #userinput{
-    border-radius: 10px ; 
     width:300px;
+    font-size: 16px;
 }
 
 #password{
-    border-radius: 10px;
     width:300px;
+    font-size: 16px;
 }
 
 #submit-button{
-    border-radius: 10px; 
-    background: #ffad33;
+    background: DodgerBlue;
     border:none;
-    color:black;
-    width:300px;
+    color:white;
+    width:100px;
+    font-size: 16px;
     margin-top:10px;
     padding:10px;
 }

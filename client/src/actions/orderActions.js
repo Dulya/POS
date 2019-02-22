@@ -10,8 +10,9 @@ export default function RetrieveOrders() {
                     type: RETRIVED_ORDERS,
                     payload: orders.data
                 });
-                
+
                 return orders;
             })
     }
-} 
+}
+
