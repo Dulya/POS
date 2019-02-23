@@ -2,14 +2,11 @@ export const OPEN_MODAL = 'modal:openModal';
 export const HIDE_MODAL = 'modal:hideModal';
 
 
-export  function OpenModal(modalProps,modalType) {
-    console.log("In modal action",modalProps);
-    console.log("In modal action",modalType);
+export  function OpenModal(type, title, message) {
     return (dispatch) => {
                 return dispatch({
                     type: OPEN_MODAL,
-                    modalProps,
-                    modalType                 
+                    payload: {type, title, message, open:true}
                 });               
     }
 }

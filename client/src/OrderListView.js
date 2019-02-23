@@ -19,7 +19,6 @@ class OrderListView extends React.Component {
         this.updateQuantity = this.updateQuantity.bind(this);
         this.handlePagination = this.handlePagination.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
-        this.closeModal = this.closeModal.bind(this);
 
     }
 
@@ -51,19 +50,8 @@ class OrderListView extends React.Component {
         });
     }
 
-    closeModal() {
-        HideModal();
-    }
-
     handleOpenModal(event) {
-        const { onOpenModal } = this.props;
-        console.log("handleOpenModal");
-        onOpenModal({
-          openModal: true,
-          title: 'Alert Modal',
-          message: MESSAGE,
-          closeModal: this.closeModal
-        }, 'alert')
+        this.props.onOpenModal('alert', 'Alert Modal', MESSAGE);
     }
 
     render() {
