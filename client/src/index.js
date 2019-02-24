@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import './LoginForm.css';
 import './OrderListView.css';
+import './cardPanel.css';
 import './header.css';
 import Main from './Main';
 import * as serviceWorker from './serviceWorker';

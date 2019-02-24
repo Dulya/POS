@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import ReactModal from 'react-modal';
-import alertModal from './Modals'
+import ItemCartModal from './Modals'
 import {HideModal} from './actions/modalActions'
 
 const mapStateToProps = state => {
@@ -11,14 +11,13 @@ const mapStateToProps = state => {
 }
 
 const MODAL_TYPES = {
-    'alert': alertModal
+    'itemCart': ItemCartModal
 }
 
-
+ReactModal.defaultStyles.content.width = '1000px';
+ReactModal.defaultStyles.content.height = '800px';
+ReactModal.defaultStyles.content.margin = 'auto';
 class ModalContainer extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         console.log("Modal props", this.props);
@@ -27,6 +26,7 @@ class ModalContainer extends React.Component {
         }
         
         const SpecifiedModal = MODAL_TYPES[this.props.type];
+        console.log("items here",this.props.items);
 
         return (
 
@@ -36,12 +36,13 @@ class ModalContainer extends React.Component {
                     onRequestClose={this.props.hideModal}
                     contentLabel="Example Modal"
                     ariaHideApp={false}
-                    bodyOpenClassName="modal-open"
-                    className="modal-dialog modal-dialog-centered"
+                    bodyOpenClassName="modalStyle"
+                    dialogClassName="modalStyle"
+                    
                 >
                  
                     <SpecifiedModal
-                        closeModal={this.props.hideModal} title={this.props.title} message={this.props.message}
+                        closeModal={this.props.hideModal} title={this.props.title} items={this.props.items}
                     />
                 </ReactModal>
             </div>

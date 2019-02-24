@@ -1,8 +1,8 @@
-.modal-content{
-  top                   : 0;
-  left                  : 0;
-  right                 : auto;
-  bottom                : auto;
-  margin          : 25%;
+
+.modalStyle{
+  display: block; 
+  width: 800px; 
+  height:500px;
+  padding-left: 0px;
   background: black;
 }

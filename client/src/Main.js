@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import OrderView from './OrderListView';
+import OrderItemView from './OrderItemView';
 import LoginForm from './LoginForm';
 import ModalContainer from './ModalContainer';
 import { applyMiddleware, createStore, compose, combineReducers } from 'redux';
@@ -9,6 +10,7 @@ import { Provider } from 'react-redux';
 import userReducer from './reducers/userReducer';
 import orderReducer from './reducers/orderReducer';
 import orderitemReducer from './reducers/orderitemReducer';
+import itemReducer from './reducers/itemReducer';
 import modalReducer from './reducers/modalReducer';
 import { validateUserDetails } from './actions/userActions';
 
@@ -20,6 +22,7 @@ const allReducers = combineReducers({
     user: userReducer,
     orders: orderReducer,
     orderitems: orderitemReducer,
+    items: itemReducer,
     modal:modalReducer
 });
 
@@ -48,6 +51,7 @@ class Main extends React.Component {
                             <Route exact component={OrderView} path="/" />
                             <Route component={LoginForm} path="/login" />
                             <Route component={OrderView} path="/orders" />
+                            <Route component={OrderItemView} path="/orderitems" />
                             <Route component={ModalContainer} path="/modal" />
                         </div>
                     </div>

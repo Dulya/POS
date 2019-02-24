@@ -8,6 +8,7 @@ var cors = require("cors");
 var userRouter = require("./routes/user");
 var orderRouter = require("./routes/order");
 var orderitemRouter = require("./routes/orderitem");
+var itemRouter = require("./routes/item");
 
 var app = express();
 
@@ -32,6 +33,7 @@ app.get('/api/session', (req, res) => {
 });
 app.use("/api/order", orderRouter);
 app.use("/api/orderitem", orderitemRouter);
+app.use("/api/item", itemRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
