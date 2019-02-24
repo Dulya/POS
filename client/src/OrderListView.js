@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import RetrieveOrders from './actions/orderActions';
-import RetrievOrderItems from './actions/orderitemActions';
 
 var dateFormat = require('dateformat');
 
@@ -28,14 +27,7 @@ class OrderListView extends React.Component {
         this.setState({
             showTable: true
         });
-        const { onRetrievOrderItems } = this.props;
-        onRetrievOrderItems(order_id)
-            .then(items => {
-                this.props.history.push("/orderitems");
-            })
-            .catch((error) => {
-                console.log("Error : ", error);
-            });
+        this.props.history.push("/order/"+order_id);
     }
 
 
@@ -80,14 +72,13 @@ class OrderListView extends React.Component {
 const mapStateToProps = state => {
     return {
         user: state.user,
-        orders: state.orders,
-        orderitems: state.orderitems,
+        orders: state.orders
+        
     }
 }
 
 const mapActionsToProps = {
     onRetrieveOrders: RetrieveOrders,
-    onRetrievOrderItems: RetrievOrderItems,
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(OrderListView);

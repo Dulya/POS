@@ -2,10 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import RetrievOrderItems from './actions/orderitemActions';
 import ModalContainer from './ModalContainer';
-import { OpenModal, HideModal } from './actions/modalActions'
+import { OpenModal, HideModal } from './actions/modalActions';
 
+var dateFormat = require('dateformat');
 
-class OrderListView extends React.Component {
+class OrderItemView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -17,6 +18,13 @@ class OrderListView extends React.Component {
         this.handlePagination = this.handlePagination.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
 
+    }
+
+    componentDidMount() {
+        this.props.onRetrievOrderItems(this.props.match.params.id)
+            .catch((error) => {
+                console.log("Error : ", error);
+            });
     }
 
     updateQuantity(e) {
@@ -45,15 +53,14 @@ class OrderListView extends React.Component {
 
     render() {
         const { currentPage, rowsPerPage } = this.state;
-        const orderitems = this.props.orderitems;
-
+        const items = this.props.orderitems.items;
         const indexOfLastRow = currentPage * rowsPerPage;
         const indexOfFirstRow = indexOfLastRow - rowsPerPage;
-        const currentRows = orderitems.slice(indexOfFirstRow, indexOfLastRow);
+        const currentRows = items.slice(indexOfFirstRow, indexOfLastRow);
 
         // Logic for displaying page numbers
         const pageNumbers = [];
-        for (let i = 1; i <= Math.ceil(orderitems.length / rowsPerPage); i++) {
+        for (let i = 1; i <= Math.ceil(items.length / rowsPerPage); i++) {
             pageNumbers.push(i);
         }
 
@@ -73,8 +80,28 @@ class OrderListView extends React.Component {
 
         return (
             <div>
-                 <ModalContainer />
+                <ModalContainer />
                 <div>
+                    <div className="orderlist-wrapper">
+                        <table className="table table-hover table table-bordered ">
+                            <thead className="black white-text">
+                                <tr className="table_row">
+                                    <th className="table_cell" scope="col">Order ID</th>
+                                    <th className="table_cell" scope="col">Creation Date</th>
+                                    <th className="table_cell" scope="col">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody >
+                                <tr className="table_row" >
+                                    <td className="table_cell">{this.props.orderitems.order_id}</td>
+                                    <td className="table_cell">{dateFormat(this.props.orderitems.created_date, "dddd, mmmm dS, yyyy")}</td>
+                                    <td className="table_cell">{this.props.orderitems.status}</td>
+                                    <td className="table_cell">{this.props.orderitems.quantity}</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
                     <div className="orderdetail-header">
                         <button className="add_cart_btn" onClick={this.handleOpenModal}><i className="fa fa-cart-plus" ></i> Add to Order</button>
                     </div>
@@ -126,7 +153,7 @@ const mapStateToProps = state => {
     return {
         orderitems: state.orderitems,
         modal: state.modal,
-        items:state.items
+        items: state.items
     }
 }
 
@@ -136,4 +163,4 @@ const mapActionsToProps = {
     onOpenModal: OpenModal
 }
 
-export default connect(mapStateToProps, mapActionsToProps)(OrderListView);
+export default connect(mapStateToProps, mapActionsToProps)(OrderItemView);

@@ -26,12 +26,13 @@ Order.createOrder = (newOrder, result) => {
 
 Order.getOrderById = (order_id, result) => {
     return new Promise((resolve, reject) => {
-        sql.query("select * from orders where order_id = ?", [order_id], (err, res) => {
+        //(select * from order_item where order_id=?) as t1 union (select distinct item_name,distinct price from item join t1 on item.item_id=t1.item_id )
+        sql.query("SELECT o.*, i.item_name,i.price,oi.* FROM orders o INNER JOIN order_item oi on o.order_id = oi.order_id INNER JOIN item i on oi.item_id = i.item_id where o.order_id=?", [order_id], (err, res) => {
             if (err) {
-                //console.log("Error : ", err);
+                console.log("Error : ", err);
                 reject(err);
             } else {
-                //console.log("order : ", res);
+                console.log("order : ", res);
                 resolve(res);
             }
         });
@@ -72,3 +73,5 @@ Order.getOrdersByUserAndStatus = (user_name, status, result) => {
 
 
 module.exports = Order;
+
+

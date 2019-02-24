@@ -51,7 +51,7 @@ class Main extends React.Component {
                             <Route exact component={OrderView} path="/" />
                             <Route component={LoginForm} path="/login" />
                             <Route component={OrderView} path="/orders" />
-                            <Route component={OrderItemView} path="/orderitems" />
+                            <Route component={OrderItemView} path="/order/:id" />
                             <Route component={ModalContainer} path="/modal" />
                         </div>
                     </div>

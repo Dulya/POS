@@ -25,22 +25,6 @@ OrderItem.addOrderItem = (orderdetail, result) => {
 
 }
 
-OrderItem.getOrderItemsByOrder = (order_id, result) => {
-    return new Promise((resolve, reject) => {
-        //(select * from order_item where order_id=?) as t1 union (select distinct item_name,distinct price from item join t1 on item.item_id=t1.item_id )
-        sql.query("select distinct * from (select  * from order_item where order_id=?) as t1 , (select distinct item_name, price from item join order_item on order_item.item_id=item.item_id) as t2", [order_id], (err, res) => {
-            if (err) {
-                console.log("Error : ", err);
-                reject(err);
-            } else {
-                console.log("order : ", res);
-                resolve(res);
-            }
-        });
-    });
-
-}
-
 OrderItem.removeOrderItem = (orderitem_id, result) => {
     return new Promise((resolve, reject) => {
         sql.query("delete from  order_item where orderitem_id = ? ", [orderitem_id], (err, res) => {

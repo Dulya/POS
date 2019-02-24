@@ -1,6 +1,5 @@
 import React from 'react'
 import RetrieveItems from './actions/itemActions';
-import addcart from './images/addcart.png';
 import { connect } from 'react-redux';
 
 class ItemCartModal extends React.Component {

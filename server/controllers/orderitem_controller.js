@@ -17,16 +17,6 @@ exports.addOrderItem = (req, res) => {
     }
 }
 
-exports.filterOrderItemsByOrder = (req, res) => {
-    OrderItem.getOrderItemsByOrder(req.params.order_id)
-        .then((orderitem) => {
-            res.json(orderitem);
-        })
-        .catch((err) => {
-            res.send(err);
-        });
-}
-
 exports.removeOrderItem = (req, res) => {
     OrderItem.removeOrderItem(req.params.orderitem_id)
         .then((result) => {

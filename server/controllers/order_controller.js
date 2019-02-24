@@ -20,7 +20,29 @@ exports.createNewOrder = (req, res) => {
 exports.retreiveOrderById = (req, res) => {
     Order.getOrderById(req.params.order_id)
         .then((order) => {
-            res.json(order);
+            if (order.length > 0) {
+                var order_id = order[0].order_id;
+                var created_date = order[0].created_date;
+                var status = order[0].status;
+                var items = [];
+                var i;
+                for (i = 0; i < order.length; i++) {
+                    items.push(
+                        {
+                            orderitem_id: order[i].orderitem_id,
+                            item_name: order[i].item_name,
+                            price: order[i].price,
+                            quantity: order[i].quantity
+                        });
+                }
+            }
+            const order_detail = {
+                order_id,
+                created_date,
+                status,
+                items
+            }
+            res.send(order_detail);
         })
         .catch((err) => {
             res.send(err);
