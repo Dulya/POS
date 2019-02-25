@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import RetrievOrderItems from './actions/orderitemActions';
+import RetrievOrderItems from '../actions/orderitemActions';
 import ModalContainer from './ModalContainer';
-import { OpenModal, HideModal } from './actions/modalActions';
+import { OpenModal, HideModal } from '../actions/modalActions';
+import { UpdateOrderItem, InsertOrderItem, DeleteOrderItem } from '../actions/orderitemActions';
+
 
 var dateFormat = require('dateformat');
 
@@ -12,9 +14,11 @@ class OrderItemView extends React.Component {
         this.state = {
             currentPage: 1,
             rowsPerPage: 10,
+            updateValue: 0,
+
         }
-        this.handleRowClick = this.handleRowClick.bind(this);
         this.updateQuantity = this.updateQuantity.bind(this);
+        this.deleteCartItem = this.deleteCartItem.bind(this);
         this.handlePagination = this.handlePagination.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
 
@@ -27,19 +31,33 @@ class OrderItemView extends React.Component {
             });
     }
 
-    updateQuantity(e) {
-
-    }
-
-    handleRowClick(order_id) {
+    updateQuantity(e, id) {
         this.setState({
-            showTable: true
+            [e.target.name]: [e.target.value]
         });
-        const { onRetrievOrderItems } = this.props;
-        onRetrievOrderItems(order_id).catch((error) => {
-            console.log("Error : ", error);
+        this.props.orderitems.items.map((item, index) => {
+            if (item.orderitem_id === id) {
+                this.props.orderitems.items[index].quantity = e.target.value;
+                this.props.onUpdateOrderItem(this.props.orderitems.items[index])
+                    .catch(err => {
+                        console.log("Error : ", err);
+                    });
+            }
         });
     }
+
+    deleteCartItem(e, id) {
+        this.props.orderitems.items.map((item, index) => {
+            this.props.onDeleteOrderItem(id)
+                .then(res=>{
+                    this.render();
+                })
+                .catch(err => {
+                    console.log("Error : ", err);
+                });
+        });
+    }
+
 
     handlePagination(event) {
         this.setState({
@@ -83,12 +101,12 @@ class OrderItemView extends React.Component {
                 <ModalContainer />
                 <div>
                     <div className="orderlist-wrapper">
-                        <table className="table table-hover table table-bordered ">
+                        <table id="table-order" className="table table-default ">
                             <thead className="black white-text">
                                 <tr className="table_row">
-                                    <th className="table_cell" scope="col">Order ID</th>
-                                    <th className="table_cell" scope="col">Creation Date</th>
-                                    <th className="table_cell" scope="col">Status</th>
+                                    <th className="table_cell" scope="col"><label className="th-label">Order ID</label> </th>
+                                    <th className="table_cell" scope="col"><label className="th-label">Creation Date </label> </th>
+                                    <th className="table_cell" scope="col"><label className="th-label">Status </label></th>
                                 </tr>
                             </thead>
                             <tbody >
@@ -102,12 +120,13 @@ class OrderItemView extends React.Component {
                             </tbody>
                         </table>
                     </div>
-                    <div className="orderdetail-header">
-                        <button className="add_cart_btn" onClick={this.handleOpenModal}><i className="fa fa-cart-plus" ></i> Add to Order</button>
-                    </div>
-                    <div className="orderdetail-wrapper">
 
-                        <table className="table table-hover table table-bordered ">
+                    <div className="orderdetail-wrapper">
+                        <div className="orderdetail-header">
+                            <button className="add_cart_btn" onClick={this.handleOpenModal}><i className="fa fa-cart-plus" ></i> Add to Order</button>
+                        </div>
+
+                        <table id="table-cart" className="table table-hover table table-bordered">
                             <thead className="black white-text">
                                 <tr className="table_row">
                                     <th className="table_cell" scope="col"></th>
@@ -127,20 +146,23 @@ class OrderItemView extends React.Component {
                                         </th>
                                         <td className="table_cell">{orderitem.orderitem_id}</td>
                                         <td className="table_cell">{orderitem.item_name}</td>
-                                        <td className="table_cell"><input className="input_spinner" placeholder="Enter a number" required type="number" value={orderitem.quantity} min="0" max="100" onChange={e => this.updateQuantity(e)} /><button className="remove_btn"><i className="fa fa-edit"></i> </button></td>
+                                        <td className="table_cell"><input className="input_spinner" name={'input' + orderitem.orderitem_id} placeholder="Enter a number" defaultValue={orderitem.quantity} required type="number" min="0" max="100" onChange={e => this.updateQuantity(e, orderitem.orderitem_id)} /></td>
                                         <td className="table_cell">{orderitem.price}</td>
-                                        <td className="table_cell"><button className="remove_btn"><i className="fa fa-trash"></i> </button></td>
+                                        <td className="table_cell"><button className="remove_btn" onClick={e => this.deleteCartItem(e, orderitem.orderitem_id)}><i className="fa fa-trash"></i> </button></td>
                                     </tr>
                                 )}
                             </tbody>
                         </table>
-
-
+                        <ul id="page-numbers">
+                            {renderPageNumbers}
+                        </ul>
                     </div>
-                    <ul id="page-numbers">
-                        {renderPageNumbers}
-                    </ul>
+                    <div className="orderdetail-footer">
+                        <button className="update_cart_btn" onClick={this.handleOpenModal}><i className="fa fa-cart-plus" ></i> Update Cart</button>
+                    </div>
+
                 </div>
+
                 }
             </div>
         );
@@ -160,7 +182,9 @@ const mapStateToProps = state => {
 const mapActionsToProps = {
     onRetrievOrderItems: RetrievOrderItems,
     hideModal: HideModal,
-    onOpenModal: OpenModal
+    onOpenModal: OpenModal,
+    onUpdateOrderItem: UpdateOrderItem,
+    onDeleteOrderItem: DeleteOrderItem
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(OrderItemView);

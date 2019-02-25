@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import RetrieveOrders from './actions/orderActions';
+import RetrieveOrders from '../actions/orderActions';
 
 var dateFormat = require('dateformat');
 

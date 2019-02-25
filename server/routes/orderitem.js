@@ -10,7 +10,7 @@ router.route('/:orderitem_id')
     .delete(OrderItemController.removeOrderItem);
 
 router.route('/')
-    .put(OrderItemController.updateItemQuantity);
+    .put(OrderItemController.updateOrderItem);
 
 
 module.exports = router;

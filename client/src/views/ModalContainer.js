@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import ReactModal from 'react-modal';
 import ItemCartModal from './Modals'
-import {HideModal} from './actions/modalActions'
+import {HideModal} from '../actions/modalActions'
 
 const mapStateToProps = state => {
     return {
@@ -14,9 +14,11 @@ const MODAL_TYPES = {
     'itemCart': ItemCartModal
 }
 
-ReactModal.defaultStyles.content.width = '1000px';
+ReactModal.defaultStyles.content.width = '95%';
 ReactModal.defaultStyles.content.height = '800px';
 ReactModal.defaultStyles.content.margin = 'auto';
+ReactModal.defaultStyles.content.padding = '30px';
+
 class ModalContainer extends React.Component {
 
     render() {

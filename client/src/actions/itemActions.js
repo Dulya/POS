@@ -10,7 +10,6 @@ export default function RetrieveItems() {
                     type: RETRIVED_ITEMS,
                     payload: items.data
                 });
-
                 return items;
             })
     }

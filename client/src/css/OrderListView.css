@@ -6,13 +6,16 @@
 
 .orderdetail-wrapper{
     width:80%;
-    margin:10px auto auto auto;
+    margin:40px auto auto auto;
     font-size: 16px;
+    height:500px;
+    background: #e6e6e6;
+    padding:20px;
 }
 
 .orderdetail-header{
-    width:80%;
-    margin:40px auto 0px auto;
+    width:100%;
+    margin:20px auto 20px auto;
     height:50px;
     background: transparent;
     border:none;
@@ -29,7 +32,7 @@
 
 .remove_btn {
     background-color: transparent; 
-    border:#cccccc 1px solid; 
+    border: #a6a6a6 1px solid; 
     color: DodgerBlue; 
     margin-left: 25px; 
     font-size: 20px; 
@@ -68,14 +71,14 @@
     list-style: none;
     display: flex;
     justify-content: right;
-    width:80%;
+    width:100%;
     margin:10px auto auto auto;
   }
   
   #page-numbers > li {
     margin-right: 0.3em;
     color: blue;
-    border:#999999 1px solid;
+    border: #a6a6a6 1px solid;
     padding:3px 7px 3px 7px;
     user-select: none;
     cursor: pointer;
@@ -86,7 +89,43 @@
     font-size:16px;
   }
 
-  
+  .orderdetail-footer{
+    width:80%;
+    margin:20px auto 0px auto;
+    height:50px;
+    background: transparent;
+    border:none;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    padding:5px 5px 5px 0px;
+}
+
+.update_cart_btn{
+  background-color: green; 
+  border:none; 
+  color:white; 
+  font-size: 16px; 
+  cursor: pointer; 
+}
+
+#table-cart td,
+#table-cart th
+{
+  border:1px solid #8c8c8c;
+}
+
+#table-order td,
+#table-order th
+{
+  border:none;
+  outline-color:none;
+}
+
+.th-label{
+  background:#d9d9d9;
+  padding : 10px 20px 10px 20px;
+}
 
   
 

@@ -40,7 +40,7 @@ OrderItem.removeOrderItem = (orderitem_id, result) => {
 
 }
 
-OrderItem.updateItemQuantity = (orderitem, result) => {
+OrderItem.updateOrderItem = (orderitem, result) => {
     return new Promise((resolve, reject) => {
         sql.query("update order_item set quantity = ? where orderitem_id = ?", [orderitem.quantity, orderitem.orderitem_id], (err, res) => {
             if (err) {

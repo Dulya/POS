@@ -15,4 +15,6 @@ alter table user add column user_type varchar(255) not null;
 update user set user_type="admin" where user_name="admin";
 update user set user_type="normal" where user_name="john";
 
+insert into order_item values('OI00001','O00001','I001',10);
+
 

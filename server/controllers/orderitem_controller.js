@@ -27,8 +27,8 @@ exports.removeOrderItem = (req, res) => {
         });
 }
 
-exports.updateItemQuantity = (req, res) => {
-    OrderItem.updateItemQuantity(req.body)
+exports.updateOrderItem = (req, res) => {
+    OrderItem.updateOrderItem(req.body)
         .then((orderitem) => {
             res.json(orderitem);
         })

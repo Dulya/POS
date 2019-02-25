@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import './LoginForm.css';
-import './OrderListView.css';
-import './cardPanel.css';
-import './header.css';
-import Main from './Main';
+import './css/index.css';
+import './css/LoginForm.css';
+import './css/OrderListView.css';
+import './css/cardPanel.css';
+import './css/header.css';
+import Main from './views/Main';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap.css';
