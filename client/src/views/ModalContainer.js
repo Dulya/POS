@@ -14,10 +14,11 @@ const MODAL_TYPES = {
     'itemCart': ItemCartModal
 }
 
-ReactModal.defaultStyles.content.width = '95%';
+ReactModal.defaultStyles.content.width = '900px';
 ReactModal.defaultStyles.content.height = '800px';
 ReactModal.defaultStyles.content.margin = 'auto';
 ReactModal.defaultStyles.content.padding = '30px';
+ReactModal.defaultStyles.content.overflow = 'hidden';
 
 class ModalContainer extends React.Component {
 
@@ -37,10 +38,7 @@ class ModalContainer extends React.Component {
                     isOpen={this.props.open}
                     onRequestClose={this.props.hideModal}
                     contentLabel="Example Modal"
-                    ariaHideApp={false}
-                    bodyOpenClassName="modalStyle"
-                    dialogClassName="modalStyle"
-                    
+                    ariaHideApp={false}               
                 >
                  
                     <SpecifiedModal

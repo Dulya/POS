@@ -1,8 +1,8 @@
 import axios from 'axios';
 export const RETRIVED_ORDER_ITEMS = 'orders:retrievedOrderitems';
 export const UPDATED_ORDER_ITEM = 'orders:updatedOrderitem';
-export const DELETED_ORDER_ITEM = 'orders:updatedOrderitem';
-export const ADDED_ORDER_ITEM = 'orders:updatedOrderitem';
+export const DELETED_ORDER_ITEM = 'orders:deletedOrderitem';
+export const ADDED_ORDER_ITEM = 'orders:addedOrderitem';
 
 export default function RetrieveOrderItems(order_id) {
     return (dispatch) => {
@@ -47,15 +47,25 @@ export function DeleteOrderItem(orderitem_id) {
     }
 }
 
-export function insertOrderItem(orderitem) {
+export function AddOrderItem(order_id,item_id,quantity) {
+    const orderitem={
+        order_id:order_id,
+        item_id:item_id,
+        quantity:quantity
+    }
     return (dispatch) => {
-        return axios.post("/api/orderitem/"+orderitem)
-            .then(orderitem => {
+        return axios.post("/api/orderitem",orderitem)
+            .then(res => {          
                 dispatch({
                     type: ADDED_ORDER_ITEM,
                     payload: orderitem
                 })
             })
+            .catch(err=>{
+                console.log("Error",err);
+            });
+
+            
     }
 }
 

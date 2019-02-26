@@ -10,14 +10,14 @@ var OrderItem = function (orderitem) {
         this.item_price=orderitem.item_data.item_price 
 }
 
-OrderItem.addOrderItem = (orderdetail, result) => {
+OrderItem.addOrderItem = (order_id,item_id,quantity) => {
     return new Promise((resolve, reject) => {
-        sql.query("insert into  order_item set ? ", orderdetail, (err, res) => {
+        sql.query("insert into order_item(order_id,item_id,quantity) values(?,?,?) ", [order_id,item_id,quantity], (err, res) => {
             if (err) {
                 //console.log("Error : ", err);
                 reject(err);
             } else {
-                //console.log(res);
+                //console.log("res",res);
                 resolve(res);
             }
         });

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import RetrieveOrders from '../actions/orderActions';
+import {FilterOrders} from '../actions/orderActions';
 
 var dateFormat = require('dateformat');
 
@@ -12,6 +13,7 @@ class OrderListView extends React.Component {
             rowsPerPage: 5,
         }
         this.handleRowClick = this.handleRowClick.bind(this);
+        this.handleFilterOrders = this.handleFilterOrders.bind(this);
     }
 
 
@@ -23,18 +25,28 @@ class OrderListView extends React.Component {
 
     }
 
+    handleFilterOrders(e){
+        this.props.onFilterOrders(e.target.value);  
+    }
+
     handleRowClick(order_id) {
         this.setState({
             showTable: true
         });
-        this.props.history.push("/order/"+order_id);
+        this.props.history.push("/order/" + order_id);
     }
 
 
-    render() {    
+    render() {
         return (
-            <div>
+            <div>        
                 <div className="orderlist-wrapper">
+                <select  className="order-filter" onChange={e=>this.handleFilterOrders(e)}>
+                    <option value="">Filter order by status</option>
+                    <option value="all">All</option>
+                    <option value="open">Open</option>
+                    <option value="close">Closed</option>
+                </select>
                     <table className="table table-hover table table-bordered ">
                         <thead className="black white-text">
                             <tr className="table_row">
@@ -61,7 +73,7 @@ class OrderListView extends React.Component {
                             )}
                         </tbody>
                     </table>
-                </div>              
+                </div>
             </div>
         );
 
@@ -73,12 +85,13 @@ const mapStateToProps = state => {
     return {
         user: state.user,
         orders: state.orders
-        
+
     }
 }
 
 const mapActionsToProps = {
     onRetrieveOrders: RetrieveOrders,
+    onFilterOrders: FilterOrders,
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(OrderListView);
