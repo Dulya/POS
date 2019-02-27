@@ -8,7 +8,11 @@ class ItemCartModal extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      currentTab: 'pizza'
+    }
     this.handleAddItem = this.handleAddItem.bind(this);
+    this.openTab = this.openTab.bind(this);
   }
 
   componentDidMount() {
@@ -22,45 +26,146 @@ class ItemCartModal extends React.Component {
     this.props.onAddOrderItem(this.props.orderitems.order_id, item_id, e.target.value);
   }
 
+  openTab(e) {
+    this.setState({
+      currentTab: e.target.value
+    });
+  }
+
 
   render() {
+    console.log("item.category", this.state.currentTab);
+    let categories = ['pizza', 'pasta', 'appetizer', 'beverages'];
+    let filterdItems = this.props.items.filter(item => item.category.toLowerCase() === this.state.currentTab);
+
     return (
       <div>
         <div >
           <button type="button" id="close-btn" className="close" aria-label="Close" onClick={this.props.closeModal}> Close
-    
           </button>
         </div>
+
         <div >
           <div className="outer-wrapper">
-            <div className="itemlist-wrapper">
-
-              {this.props.items.map((item, index) =>
-                <div className="card-wrapper" key={index}>
-                  <div className="card" onClick={e => this.onSelectItem(e, item)}>
-                    <div className="card-container">
-                      <h3><b>{item.item_name}</b></h3>
-                    </div>
-                  </div>
-
-                  <div className="detail-panel">
-                    <div className="h-row">
-                      <label >Item Name </label>
-                      <p> : {item.item_name}</p>
-                    </div>
-                    <div className="h-row">
-                      <label >Unit Price </label>
-                      <p> : {item.price}</p>
-                    </div>
-                    <div className="h-row">
-                      <label >Quantity </label>
-                      <p> : <input id="data-input" type="number" defaultValue={0} onChange={e => this.handleAddItem(e, item.item_id)}></input></p>
-                    </div>
-
-                  </div>
-                </div>
+            <div className="tab">
+              {categories.map((category, index) =>
+                <button key={index} value={category} onClick={e => this.openTab(e)} >{category}</button>
               )}
             </div>
+
+            {this.state.currentTab === 'pizza' &&
+              <div className="itemlist-wrapper">
+                {filterdItems.map((item, index) =>
+                  <div className="card-wrapper" key={index}>
+                    <div className="card">
+                      <div className="card-container">
+                        <h5><b>{item.item_name}</b></h5>
+                      </div>
+                    </div>
+
+                    <div className="detail-panel">
+                      <div className="h-row">
+                      <label >{item.item_name} </label>
+                      </div>
+                      <div className="h-row">
+                      <label >RS. {item.price} </label>
+                      </div>
+                      <div className="h-row">
+                        <label >Quantity </label>
+                        <p> : <input id="data-input" type="number" defaultValue={0} onChange={e => this.handleAddItem(e, item.item_id)}></input></p>
+                      </div>
+
+                    </div>
+                  </div>
+                )}
+              </div>}
+
+            {this.state.currentTab === 'pasta' &&
+              <div className="itemlist-wrapper">
+
+                {filterdItems.map((item, index) =>
+                  <div className="card-wrapper" key={index}>
+                    <div className="card">
+                      <div className="card-container">
+                        <h5><b>{item.item_name}</b></h5>
+                      </div>
+                    </div>
+
+                    <div className="detail-panel">
+                      <div className="h-row">
+                      <label >{item.item_name} </label>
+                      </div>
+                      <div className="h-row">
+                      <label >RS. {item.price} </label>
+                      </div>
+                      <div className="h-row">
+                        <label >Quantity </label>
+                        <p> : <input id="data-input" type="number" defaultValue={0} onChange={e => this.handleAddItem(e, item.item_id)}></input></p>
+                      </div>
+
+                    </div>
+                  </div>
+                )}
+              </div>}
+
+            {this.state.currentTab === 'appetizer' &&
+              <div className="itemlist-wrapper">
+
+                {filterdItems.map((item, index) =>
+                  <div className="card-wrapper" key={index}>
+                    <div className="card">
+                      <div className="card-container">
+                        <h5><b>{item.item_name}</b></h5>
+                      </div>
+                    </div>
+
+                    <div className="detail-panel">
+                      <div className="h-row">
+                      <label >{item.item_name} </label>
+                      </div>
+                      <div className="h-row">
+                      <label >RS. {item.price} </label>
+                      </div>
+                      <div className="h-row">
+                        <label >Quantity </label>
+                        <p> : <input id="data-input" type="number" defaultValue={0} onChange={e => this.handleAddItem(e, item.item_id)}></input></p>
+                      </div>
+
+                    </div>
+                  </div>
+                )}
+              </div>}
+
+
+            {this.state.currentTab === 'beverages' &&
+              <div className="itemlist-wrapper">
+
+                {filterdItems.map((item, index) =>
+                  <div className="card-wrapper" key={index}>
+                    <div className="card">
+                      <div className="card-container">
+                        <h5><b>{item.item_name}</b></h5>
+                      </div>
+                    </div>
+
+                    <div className="detail-panel">
+                      <div className="h-row">
+                        <label >{item.item_name} </label>
+                      </div>
+                      <div className="h-row">
+                        <label >RS. {item.price} </label>
+                      </div>
+                      <div className="h-row">
+                        <label >Quantity </label>
+                        <p> : <input id="data-input" type="number" defaultValue={0} onChange={e => this.handleAddItem(e, item.item_id)}></input></p>
+                      </div>
+
+                    </div>
+                  </div>
+                )}
+              </div>}
+
+
           </div>
         </div>
       </div>

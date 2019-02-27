@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import RetrieveOrders from '../actions/orderActions';
-import {FilterOrders} from '../actions/orderActions';
 
 var dateFormat = require('dateformat');
 
@@ -11,6 +10,8 @@ class OrderListView extends React.Component {
         this.state = {
             currentPage: 1,
             rowsPerPage: 5,
+            isFilter:false,
+            clickedFilter:'all'
         }
         this.handleRowClick = this.handleRowClick.bind(this);
         this.handleFilterOrders = this.handleFilterOrders.bind(this);
@@ -26,7 +27,10 @@ class OrderListView extends React.Component {
     }
 
     handleFilterOrders(e){
-        this.props.onFilterOrders(e.target.value);  
+        this.setState({
+            isFilter:true,
+            clickedFilter:e.target.value
+        });
     }
 
     handleRowClick(order_id) {
@@ -34,10 +38,20 @@ class OrderListView extends React.Component {
             showTable: true
         });
         this.props.history.push("/order/" + order_id);
+        
     }
 
 
     render() {
+        let filterdOrders=this.props.orders;
+        if(this.state.isFilter){
+            if(this.state.clickedFilter==='all'){
+                filterdOrders=this.props.orders;
+            }else{
+                filterdOrders=this.props.orders.filter(order=>order.status===this.state.clickedFilter);
+            }
+            
+        }
         return (
             <div>        
                 <div className="orderlist-wrapper">
@@ -58,7 +72,7 @@ class OrderListView extends React.Component {
                             </tr>
                         </thead>
                         <tbody >
-                            {this.props.orders.map((order, index) =>
+                            {filterdOrders.map((order, index) =>
                                 <tr className="table_row" key={index} onClick={() => this.handleRowClick(order.order_id)}>
                                     <th className="table_cell" scope="col">
                                         <div >
@@ -91,7 +105,6 @@ const mapStateToProps = state => {
 
 const mapActionsToProps = {
     onRetrieveOrders: RetrieveOrders,
-    onFilterOrders: FilterOrders,
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(OrderListView);

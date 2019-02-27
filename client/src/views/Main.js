@@ -53,6 +53,7 @@ class Main extends React.Component {
                             <Route component={OrderView} path="/orders" />
                             <Route component={OrderItemView} path="/order/:id" />
                             <Route component={ModalContainer} path="/modal" />
+                            
                         </div>
                     </div>
                 </BrowserRouter >

@@ -131,7 +131,6 @@ class OrderItemView extends React.Component {
                             <thead className="black white-text">
                                 <tr className="table_row">
                                     <th className="table_cell" scope="col"></th>
-                                    <th className="table_cell" scope="col">Order Item Id</th>
                                     <th className="table_cell" scope="col">Item Name</th>
                                     <th className="table_cell" scope="col">Quantity</th>
                                     <th className="table_cell" scope="col">Unit Price</th>
@@ -140,11 +139,6 @@ class OrderItemView extends React.Component {
                             <tbody >
                                 {currentRows.map((orderitem, index) =>
                                     <tr className="table_row" key={index}>
-                                        <th className="table_cell" scope="col">
-                                            <div >
-                                                <label> {indexOfFirstRow + index + 1}</label>
-                                            </div>
-                                        </th>
                                         <td className="table_cell">{orderitem.orderitem_id}</td>
                                         <td className="table_cell">{orderitem.item_name}</td>
                                         <td className="table_cell"><input className="input_spinner" name={'input' + orderitem.orderitem_id} placeholder="Enter a number" defaultValue={orderitem.quantity} required type="number" min="0" max="100" onChange={e => this.updateQuantity(e, orderitem.orderitem_id)} /></td>

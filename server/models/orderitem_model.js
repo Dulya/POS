@@ -12,7 +12,7 @@ var OrderItem = function (orderitem) {
 
 OrderItem.addOrderItem = (order_id,item_id,quantity) => {
     return new Promise((resolve, reject) => {
-        sql.query("insert into order_item(order_id,item_id,quantity) values(?,?,?) ", [order_id,item_id,quantity], (err, res) => {
+        sql.query("insert into order_item (order_id, item_id, quantity) VALUES(?, ?, ?) on duplicate key update quantity=?", [order_id,item_id,quantity,quantity], (err, res) => {
             if (err) {
                 //console.log("Error : ", err);
                 reject(err);

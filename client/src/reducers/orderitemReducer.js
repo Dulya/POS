@@ -20,7 +20,7 @@ export default function orderitemReducer(state = initialState, { type, payload }
             return newDeleteState;
         case ADDED_ORDER_ITEM:
             const newAddState = Object.assign({}, state);
-            newAddState.items.push(payload);
+            newAddState.items.push(payload.items);
             return newAddState;
         default: return state;
     }

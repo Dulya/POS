@@ -1,6 +1,5 @@
 import axios from 'axios';
 export const RETRIVED_ORDERS = 'orders:retrievedOrders';
-export const FILTERED_ORDERS = 'orders:filteredOrders';
 
 export default function RetrieveOrders() {
     return (dispatch) => {
@@ -17,14 +16,6 @@ export default function RetrieveOrders() {
     }
 }
 
-export function FilterOrders(status) {
-    return (dispatch) => {
-        return dispatch({
-            type: FILTERED_ORDERS,
-            payload: status
-        });               
-}
-}
 
 
 
