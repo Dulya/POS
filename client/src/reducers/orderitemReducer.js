@@ -12,7 +12,7 @@ const initialState = {
 
 export default function orderitemReducer(state = initialState, { type, payload }) {
     switch (type) {
-        case RETRIVED_ORDER_ITEMS: return payload;
+        case RETRIVED_ORDER_ITEMS: return {...state, ...payload};
         case UPDATED_ORDER_ITEM: return state;
         case DELETED_ORDER_ITEM:
             const newDeleteState = Object.assign({}, state);

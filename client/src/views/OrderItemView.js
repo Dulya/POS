@@ -141,7 +141,7 @@ class OrderItemView extends React.Component {
                                     <tr className="table_row" key={index}>
                                         <td className="table_cell">{orderitem.orderitem_id}</td>
                                         <td className="table_cell">{orderitem.item_name}</td>
-                                        <td className="table_cell"><input className="input_spinner" name={'input' + orderitem.orderitem_id} placeholder="Enter a number" defaultValue={orderitem.quantity} required type="number" min="0" max="100" onChange={e => this.updateQuantity(e, orderitem.orderitem_id)} /></td>
+                                        <td className="table_cell"><input className="input_spinner" name={'input' + orderitem.orderitem_id} placeholder="Enter a number" value={orderitem.quantity} required type="number" min="0" max="100" onChange={e => this.updateQuantity(e, orderitem.orderitem_id)} />{orderitem.quantity}</td>
                                         <td className="table_cell">{orderitem.price}</td>
                                         <td className="table_cell"><button className="remove_btn" onClick={e => this.deleteCartItem(e, orderitem.orderitem_id)}><i className="fa fa-trash"></i> </button></td>
                                     </tr>

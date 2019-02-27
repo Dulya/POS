@@ -17,7 +17,7 @@ exports.logInUser = (req, res) => {
                 if (err) {
                     res.send({ error: err });
                 } else {
-                    res.cookie('token', token, { httpOnly: true }).sendStatus(200);
+                    res.cookie('token', token, { httpOnly: true }).send(payload);
                 }
             });
 

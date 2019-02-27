@@ -11,12 +11,7 @@ export default function RetrieveOrderItems(order_id) {
             .then(order => {
                 dispatch({
                     type: RETRIVED_ORDER_ITEMS,
-                    payload: {
-                        order_id: order.data.order_id,
-                        created_date: order.data.created_date,
-                        status: order.data.status,
-                        items: order.data.items
-                    }
+                    payload: order.data
                 })
                 return order;
             })
@@ -55,11 +50,12 @@ export function AddOrderItem(order_id,item_id,quantity) {
     }
     return (dispatch) => {
         return axios.post("/api/orderitem",orderitem)
-            .then(res => {          
-                dispatch({
+            .then(res => {
+                dispatch(RetrieveOrderItems(order_id));
+                /*dispatch({
                     type: ADDED_ORDER_ITEM,
                     payload: orderitem
-                })
+                })*/
             })
             .catch(err=>{
                 console.log("Error",err);
