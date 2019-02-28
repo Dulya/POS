@@ -40,21 +40,48 @@ class ItemCartModal extends React.Component {
 
     return (
       <div>
-        <div >
+      <div >
           <button type="button" id="close-btn" className="close" aria-label="Close" onClick={this.props.closeModal}> Close
           </button>
         </div>
-
-        <div >
-          <div className="outer-wrapper">
-            <div className="tab">
+      <div id="container">
+     
+     <div id="tabs">
               {categories.map((category, index) =>
-                <button key={index} value={category} onClick={e => this.openTab(e)} >{category}</button>
+                <button id="tabButton" key={index} value={category} onClick={e => this.openTab(e)} >{category}</button>
               )}
             </div>
-
-            {this.state.currentTab === 'pizza' &&
+      <div id="content">
+      {this.state.currentTab === 'pizza' &&
               <div className="itemlist-wrapper">
+                {filterdItems.map((item, index) =>
+                  <div className="card-wrapper" key={index}>
+                    <div className="card">
+                      <div className="card-container">
+                        <h5><b>{item.item_name}</b></h5>
+                        <img src="https://source.unsplash.com/collection/3225463/pizza/200x100"></img>
+                      </div>
+                    </div>
+
+                    <div className="detail-panel">
+                      <div className="h-row">
+                      <label >{item.item_name} </label>
+                      </div>
+                      <div className="h-row">
+                      <label >RS. {item.price} </label>
+                      </div>
+                      <div className="h-row">
+                        <label >Quantity </label>
+                        <p> : <input id="data-input" type="number" defaultValue={0} onChange={e => this.handleAddItem(e, item.item_id)}></input></p>
+                      </div>
+
+                    </div>
+                  </div>
+                )}
+              </div>}
+      {this.state.currentTab === 'pasta' &&
+              <div className="itemlist-wrapper">
+
                 {filterdItems.map((item, index) =>
                   <div className="card-wrapper" key={index}>
                     <div className="card">
@@ -80,35 +107,7 @@ class ItemCartModal extends React.Component {
                 )}
               </div>}
 
-            {this.state.currentTab === 'pasta' &&
-              <div className="itemlist-wrapper">
-
-                {filterdItems.map((item, index) =>
-                  <div className="card-wrapper" key={index}>
-                    <div className="card">
-                      <div className="card-container">
-                        <h5><b>{item.item_name}</b></h5>
-                      </div>
-                    </div>
-
-                    <div className="detail-panel">
-                      <div className="h-row">
-                      <label >{item.item_name} </label>
-                      </div>
-                      <div className="h-row">
-                      <label >RS. {item.price} </label>
-                      </div>
-                      <div className="h-row">
-                        <label >Quantity </label>
-                        <p> : <input id="data-input" type="number" defaultValue={0} onChange={e => this.handleAddItem(e, item.item_id)}></input></p>
-                      </div>
-
-                    </div>
-                  </div>
-                )}
-              </div>}
-
-            {this.state.currentTab === 'appetizer' &&
+              {this.state.currentTab === 'appetizer' &&
               <div className="itemlist-wrapper">
 
                 {filterdItems.map((item, index) =>
@@ -165,10 +164,11 @@ class ItemCartModal extends React.Component {
                 )}
               </div>}
 
-
-          </div>
-        </div>
       </div>
+    </div>
+    </div>
+    
+    
     );
   }
 

@@ -1,6 +1,8 @@
 import { RETRIVED_ITEMS } from '../actions/itemActions';
 
-export default function itemReducer(state = [], { type, payload }) {
+const initialState=[];
+
+export default function itemReducer(state = initialState, { type, payload }) {
     switch (type) {
         case RETRIVED_ITEMS: return payload;
         default:return state;

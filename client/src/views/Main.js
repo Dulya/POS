@@ -30,6 +30,12 @@ const store = createStore(allReducers, composeEnhancer(middleware));
 store.dispatch(validateUserDetails());
 
 class Main extends React.Component {
+    constructor(props){
+        super(props)
+        this.state={
+            user_name:store.getState().user.user_name
+        }
+    }
 
     render() {
         return (
@@ -39,12 +45,16 @@ class Main extends React.Component {
 
                         <div className="navbar">
                             <p>POS</p>
+                            
+                            {store.getState().user.user_name!=="" && 
+                            <div>
                             <div className="user_icon_div" >
                             <i className="glyphicon glyphicon-user" id="user_icon"></i>
                             </div>
                             <div className="user_Label">
-                                user
-                            </div>
+                            {store.getState().user.user_name}
+                            </div></div>}
+                            
                         </div>
 
                         <div className="content">
