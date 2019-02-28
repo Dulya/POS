@@ -1,22 +1,17 @@
 import axios from 'axios';
-export const RETRIVED_ORDER_ITEMS = 'orders:retrievedOrderitems';
+export const RETRIEVED_ORDER_ITEMS = 'orders:retrievedOrderitems';
 export const UPDATED_ORDER_ITEM = 'orders:updatedOrderitem';
 export const DELETED_ORDER_ITEM = 'orders:deletedOrderitem';
 export const ADDED_ORDER_ITEM = 'orders:addedOrderitem';
 
-export default function RetrieveOrderItems(order_id) {
+export default function RetrieveItemsByOrderId(order_id) {
     return (dispatch) => {
         const url = "/api/order/id/" + order_id;
         return axios.get(url)
             .then(order => {
                 dispatch({
-                    type: RETRIVED_ORDER_ITEMS,
-                    payload: {
-                        order_id: order.data.order_id,
-                        created_date: order.data.created_date,
-                        status: order.data.status,
-                        items: order.data.items
-                    }
+                    type: RETRIEVED_ORDER_ITEMS,
+                    payload:order.data
                 })
                 return order;
             })
@@ -55,11 +50,8 @@ export function AddOrderItem(order_id,item_id,quantity) {
     }
     return (dispatch) => {
         return axios.post("/api/orderitem",orderitem)
-            .then(res => {          
-                dispatch({
-                    type: ADDED_ORDER_ITEM,
-                    payload: orderitem
-                })
+            .then(res => {         
+                dispatch(RetrieveItemsByOrderId(order_id));
             })
             .catch(err=>{
                 console.log("Error",err);

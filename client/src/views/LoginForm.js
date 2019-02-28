@@ -1,5 +1,6 @@
 import React from 'react';
-import axios from 'axios';
+import {connect} from "react-redux";
+import { loginUser } from "../actions/userActions";
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -16,13 +17,9 @@ class LoginForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        axios.post('/user/login', this.state)
-            .then((res) => {
-                this.props.history.push("/orders");
-            })
-            .catch(err => {
-                console.log("Error Log In. Please Try Again.", err);
-            });
+        this.props.loginUser(this.state.user_name, this.state.password).then(() => {
+            this.props.history.push("/orders");
+        });
     }
 
     updateUsername(e) {
@@ -68,8 +65,10 @@ class LoginForm extends React.Component {
 
 }
 
+const mapActionsToProps = {
+    loginUser: loginUser
+}
 
-
-export default LoginForm;
+export default connect(null, mapActionsToProps)(LoginForm);
 
 

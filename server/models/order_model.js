@@ -1,8 +1,8 @@
 'user strict';
 var sql = require('../utils/db_connection.js');
 
-var Order = function (order) {
-    this.order_id = order.order_id,
+const Order = function (order) {
+        this.order_id = order.order_id,
         this.user_name = order.user_name,
         this.status = order.status,
         this.created_date = new Date(),
@@ -13,10 +13,8 @@ Order.createOrder = (newOrder, result) => {
     return new Promise((resolve, reject) => {
         sql.query("insert into orders values (?,?,?,?)", [newOrder.order_id, newOrder.user_name, newOrder.status, newOrder.created_date], (err, res) => {
             if (err) {
-                //console.log("Error : ", err);
                 reject(err);
             } else {
-                //console.log(res);
                 resolve(res);
             }
         });
@@ -26,16 +24,34 @@ Order.createOrder = (newOrder, result) => {
 
 Order.getOrderById = (order_id, result) => {
     return new Promise((resolve, reject) => {
-        //(select * from order_item where order_id=?) as t1 union (select distinct item_name,distinct price from item join t1 on item.item_id=t1.item_id )
-        sql.query("SELECT o.*, i.item_name,i.price,oi.* FROM orders o INNER JOIN order_item oi on o.order_id = oi.order_id INNER JOIN item i on oi.item_id = i.item_id where o.order_id=?", [order_id], (err, res) => {
-            if (err) {
-                console.log("Error : ", err);
+
+        const data={
+            order_id:"",
+            created_date:"",
+            status:"",
+            total_amount:null,
+            items:[]
+        }
+
+        sql.query("select orders.*,(select sum(order_item.quantity*item.price) from order_item join item on order_item.item_id=item.item_id where orders.order_id = order_item.order_id) as total_amount from orders where orders.order_id=? limit 1",[order_id],(err,order)=>{
+            if(order){  
+                data.order_id=order[0].order_id;
+                data.created_date=order[0].created_date;
+                data.status=order[0].status;
+                data.total_amount=order[0].total_amount;
+                sql.query("select i.item_name,i.price,oi.* from order_item oi inner join item i on oi.item_id=i.item_id where oi.order_id=?",[order_id],(err,items)=>{
+                    if(items){
+                        data.items=items;
+                        resolve(data);
+                    }else{
+                        reject(err);
+                    }
+                });
+                
+            }else{
                 reject(err);
-            } else {
-                console.log("order : ", res);
-                resolve(res);
             }
-        });
+        })   
     });
 }
 
@@ -74,4 +90,5 @@ Order.getOrdersByUserAndStatus = (user_name, status, result) => {
 
 module.exports = Order;
 
-
+//select i.item_name,i.price,oi.* from order_item oi inner join item i on oi.item_id=i.item_id where oi.order_id=?
+        //(select * from order_item where order_id=?) as t1 union (select distinct item_name,distinct price from item join t1 on item.item_id=t1.item_id )

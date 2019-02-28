@@ -1,18 +1,18 @@
-import { RETRIVED_ORDER_ITEMS } from '../actions/orderitemActions';
+import { RETRIEVED_ORDER_ITEMS } from '../actions/orderitemActions';
 import { UPDATED_ORDER_ITEM } from '../actions/orderitemActions';
 import { DELETED_ORDER_ITEM } from '../actions/orderitemActions';
 import { ADDED_ORDER_ITEM } from '../actions/orderitemActions';
 
 const initialState = {
     order_id: "",
-    crated_date: "",
+    created_date: "",
     status: '',
     items: []
 }
 
 export default function orderitemReducer(state = initialState, { type, payload }) {
     switch (type) {
-        case RETRIVED_ORDER_ITEMS: return payload;
+        case RETRIEVED_ORDER_ITEMS: return {...state,...payload};
         case UPDATED_ORDER_ITEM: return state;
         case DELETED_ORDER_ITEM:
             const newDeleteState = Object.assign({}, state);

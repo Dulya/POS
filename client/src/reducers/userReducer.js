@@ -6,7 +6,7 @@ const initialState={
 }
 
 export default function userReducer(state = initialState, action) {
-    switch (action) {
+    switch (action.type) {
         case VALIDATE_USER: return action.payload;
         default:return state;
     }

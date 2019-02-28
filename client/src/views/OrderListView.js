@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import RetrieveOrders from '../actions/orderActions';
+import RetrieveOrdersByUserName from '../actions/orderActions';
 
 var dateFormat = require('dateformat');
 
@@ -104,7 +104,7 @@ const mapStateToProps = state => {
 }
 
 const mapActionsToProps = {
-    onRetrieveOrders: RetrieveOrders,
+    onRetrieveOrders: RetrieveOrdersByUserName,
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(OrderListView);

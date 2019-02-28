@@ -1,13 +1,13 @@
 import axios from 'axios';
-export const RETRIVED_ORDERS = 'orders:retrievedOrders';
+export const RETRIVED_ORDERS_BY_USER = 'orders:retrievedOrdersByUser';
 
-export default function RetrieveOrders() {
+export default function RetrieveOrdersByUserName() {
     return (dispatch) => {
         const url = '/api/order/user';
         return axios.get(url)
             .then(orders => {
                 dispatch({
-                    type: RETRIVED_ORDERS,
+                    type: RETRIVED_ORDERS_BY_USER,
                     payload: orders.data
                 });
 
@@ -15,6 +15,8 @@ export default function RetrieveOrders() {
             })
     }
 }
+
+
 
 
 

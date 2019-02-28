@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import RetrievOrderItems from '../actions/orderitemActions';
+import RetrieveItemsByOrderId from '../actions/orderitemActions';
 import ModalContainer from './ModalContainer';
 import { OpenModal, HideModal } from '../actions/modalActions';
 import { UpdateOrderItem, DeleteOrderItem } from '../actions/orderitemActions';
@@ -108,6 +108,7 @@ class OrderItemView extends React.Component {
                                     <th className="table_cell" scope="col"><label className="th-label">Order ID</label> </th>
                                     <th className="table_cell" scope="col"><label className="th-label">Creation Date </label> </th>
                                     <th className="table_cell" scope="col"><label className="th-label">Status </label></th>
+                                    <th className="table_cell" scope="col"><label className="th-label">Total Amount </label></th>
                                 </tr>
                             </thead>
                             <tbody >
@@ -115,7 +116,7 @@ class OrderItemView extends React.Component {
                                     <td className="table_cell">{this.props.orderitems.order_id}</td>
                                     <td className="table_cell">{dateFormat(this.props.orderitems.created_date, "dddd, mmmm dS, yyyy")}</td>
                                     <td className="table_cell">{this.props.orderitems.status}</td>
-                                    <td className="table_cell">{this.props.orderitems.quantity}</td>
+                                    <td className="table_cell">{this.props.orderitems.total_amount}</td>
                                 </tr>
 
                             </tbody>
@@ -141,7 +142,7 @@ class OrderItemView extends React.Component {
                                     <tr className="table_row" key={index}>
                                         <td className="table_cell">{orderitem.orderitem_id}</td>
                                         <td className="table_cell">{orderitem.item_name}</td>
-                                        <td className="table_cell"><input className="input_spinner" name={'input' + orderitem.orderitem_id} placeholder="Enter a number" defaultValue={orderitem.quantity} required type="number" min="0" max="100" onChange={e => this.updateQuantity(e, orderitem.orderitem_id)} /></td>
+                                        <td className="table_cell"><input className="input_spinner" name={'input' + orderitem.orderitem_id} placeholder="Enter a number" value={orderitem.quantity} required type="number" min="0" max="100" onChange={e => this.updateQuantity(e, orderitem.orderitem_id)} /></td>
                                         <td className="table_cell">{orderitem.price}</td>
                                         <td className="table_cell"><button className="remove_btn" onClick={e => this.deleteCartItem(e, orderitem.orderitem_id)}><i className="fa fa-trash"></i> </button></td>
                                     </tr>
@@ -171,7 +172,7 @@ const mapStateToProps = state => {
 }
 
 const mapActionsToProps = {
-    onRetrievOrderItems: RetrievOrderItems,
+    onRetrievOrderItems: RetrieveItemsByOrderId,
     hideModal: HideModal,
     onOpenModal: OpenModal,
     onUpdateOrderItem: UpdateOrderItem,
