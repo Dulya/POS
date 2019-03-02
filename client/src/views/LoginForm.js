@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import { loginUser } from "../actions/userActions";
+import { loginUser, validateUserDetails } from "../actions/userActions";
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -13,6 +13,13 @@ class LoginForm extends React.Component {
         this.updatePassword = this.updatePassword.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 
+    }
+
+    componentDidMount(){
+        this.props.afterValidateUser()
+        .then(() =>{
+            this.props.history.push('/orders');
+        });
     }
 
 
@@ -67,8 +74,11 @@ class LoginForm extends React.Component {
 }
 
 const mapActionsToProps = {
-    loginUser: loginUser
+    loginUser: loginUser,
+    afterValidateUser:validateUserDetails
 }
+
+
 
 export default connect(null, mapActionsToProps)(LoginForm);
 

@@ -16,7 +16,7 @@ describe('OrderItem reducer testing', () => {
     it('Should return state by default', () => {
         const action = { type: null };
         const expectedState = {
-            isFtechedItems: false,
+            isFetchedItems: false,
             isUpdated: false,
             isDeleted: false,
             isAdded: false,

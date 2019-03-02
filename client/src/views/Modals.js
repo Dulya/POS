@@ -9,7 +9,9 @@ class ItemCartModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentTab: 'pizza'
+      currentTab: 'pizza',
+      itemsInOrder: []
+
     }
     this.handleAddItem = this.handleAddItem.bind(this);
     this.openTab = this.openTab.bind(this);
@@ -20,6 +22,11 @@ class ItemCartModal extends React.Component {
       .catch((error) => {
         console.log("Error : ", error);
       });
+    this.setState({
+      itemsInOrder :this.props.orderitems.items.map(item => item.item_id)
+    });
+    
+
   }
 
   handleAddItem(e, item_id) {
@@ -37,22 +44,23 @@ class ItemCartModal extends React.Component {
     console.log("item.category", this.state.currentTab);
     let categories = ['pizza', 'pasta', 'appetizer', 'beverages'];
     let filterdItems = this.props.items.filter(item => item.category.toLowerCase() === this.state.currentTab);
+    let itemsInOrder=this.state.itemsInOrder;
 
     return (
       <div>
-      <div >
+        <div >
           <button type="button" id="close-btn" className="close" aria-label="Close" onClick={this.props.closeModal}> Close
           </button>
         </div>
-      <div id="container">
-     
-     <div id="tabs">
-              {categories.map((category, index) =>
-                <button id="tabButton" key={index} value={category} onClick={e => this.openTab(e)} >{category}</button>
-              )}
-            </div>
-      <div id="content">
-      {this.state.currentTab === 'pizza' &&
+        <div id="container">
+
+          <div id="tabs">
+            {categories.map((category, index) =>
+              <button id="tabButton" key={index} value={category} onClick={e => this.openTab(e)} >{category}</button>
+            )}
+          </div>
+          <div id="content">
+            {this.state.currentTab === 'pizza' &&
               <div className="itemlist-wrapper">
                 {filterdItems.map((item, index) =>
                   <div className="card-wrapper" key={index}>
@@ -65,21 +73,25 @@ class ItemCartModal extends React.Component {
 
                     <div className="detail-panel">
                       <div className="h-row">
-                      <label >{item.item_name} </label>
+                        <label >{item.item_name} </label>
                       </div>
                       <div className="h-row">
-                      <label >RS. {item.price} </label>
+                        <label >RS. {item.price} </label>
                       </div>
                       <div className="h-row">
-                        <label >Quantity </label>
-                        <p> : <input id="data-input" type="number" defaultValue={0} onChange={e => this.handleAddItem(e, item.item_id)}></input></p>
+                        {itemsInOrder.indexOf(item.item_id) > -1 ? "Already added" :
+                          <div>
+                            <label >Quantity </label>
+                            <p> : <input id="data-input" type="number" defaultValue={0} onChange={e => this.handleAddItem(e, item.item_id)}></input></p>
+
+                          </div>}
                       </div>
 
                     </div>
                   </div>
                 )}
               </div>}
-      {this.state.currentTab === 'pasta' &&
+            {this.state.currentTab === 'pasta' &&
               <div className="itemlist-wrapper">
 
                 {filterdItems.map((item, index) =>
@@ -93,22 +105,27 @@ class ItemCartModal extends React.Component {
 
                     <div className="detail-panel">
                       <div className="h-row">
-                      <label >{item.item_name} </label>
+                        <label >{item.item_name} </label>
                       </div>
                       <div className="h-row">
-                      <label >RS. {item.price} </label>
+                        <label >RS. {item.price} </label>
                       </div>
                       <div className="h-row">
-                        <label >Quantity </label>
-                        <p> : <input id="data-input" type="number" defaultValue={0} onChange={e => this.handleAddItem(e, item.item_id)}></input></p>
-                      </div>
+                        {itemsInOrder.indexOf(item.item_id) > -1 ? "Already added" :
+                          <div>
+                            {itemsInOrder.indexOf(item.item_id) > -1 ? "Already added" :
+                          <div>
+                            <label >Quantity </label>
+                            <p> : <input id="data-input" type="number" defaultValue={0} onChange={e => this.handleAddItem(e, item.item_id)}></input></p>
+
+                          </div>}</div>}</div>
 
                     </div>
                   </div>
                 )}
               </div>}
 
-              {this.state.currentTab === 'appetizer' &&
+            {this.state.currentTab === 'appetizer' &&
               <div className="itemlist-wrapper">
 
                 {filterdItems.map((item, index) =>
@@ -122,15 +139,18 @@ class ItemCartModal extends React.Component {
 
                     <div className="detail-panel">
                       <div className="h-row">
-                      <label >{item.item_name} </label>
+                        <label >{item.item_name} </label>
                       </div>
                       <div className="h-row">
-                      <label >RS. {item.price} </label>
+                        <label >RS. {item.price} </label>
                       </div>
                       <div className="h-row">
-                        <label >Quantity </label>
-                        <p> : <input id="data-input" type="number" defaultValue={0} onChange={e => this.handleAddItem(e, item.item_id)}></input></p>
-                      </div>
+                      {itemsInOrder.indexOf(item.item_id) > -1 ? "Already added" :
+                          <div>
+                            <label >Quantity </label>
+                            <p> : <input id="data-input" type="number" defaultValue={0} onChange={e => this.handleAddItem(e, item.item_id)}></input></p>
+
+                          </div>}</div>
 
                     </div>
                   </div>
@@ -147,7 +167,7 @@ class ItemCartModal extends React.Component {
                       <div className="card-container">
                         <h5><b>{item.item_name}</b></h5>
                         <img src="https://source.unsplash.com/collection/3128357/200x100"></img>
-                        
+
                       </div>
                     </div>
 
@@ -168,11 +188,11 @@ class ItemCartModal extends React.Component {
                 )}
               </div>}
 
+          </div>
+        </div>
       </div>
-    </div>
-    </div>
-    
-    
+
+
     );
   }
 

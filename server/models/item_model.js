@@ -5,7 +5,7 @@ var Item = function (item) {
     this.item_id = item.item_id,
         this.item_name = item.item_name,
         this.price = item.price,
-        this.description=oitem.description
+        this.category=item.category
 }
 
 Item.getAllItems = () => {

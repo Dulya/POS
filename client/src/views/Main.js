@@ -28,7 +28,7 @@ const allReducers = combineReducers({
 });
 
 const store = createStore(allReducers, composeEnhancer(middleware));
-store.dispatch(validateUserDetails());
+
 
 class Main extends React.Component {
     constructor(props){

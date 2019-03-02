@@ -140,7 +140,7 @@ class OrderItemView extends React.Component {
                             <tbody >
                                 {currentRows.map((orderitem, index) =>
                                     <tr className="table_row" key={index}>
-                                        <td className="table_cell">{orderitem.orderitem_id}</td>
+                                        <td className="table_cell">{index+1}</td>
                                         <td className="table_cell">{orderitem.item_name}</td>
                                         <td className="table_cell"><input className="input_spinner" name={'input' + orderitem.orderitem_id} placeholder="Enter a number" value={orderitem.quantity} required type="number" min="0" max="100" onChange={e => this.updateQuantity(e, orderitem.orderitem_id)} /></td>
                                         <td className="table_cell">{orderitem.price}</td>
