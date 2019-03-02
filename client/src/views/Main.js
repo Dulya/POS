@@ -4,6 +4,7 @@ import OrderView from '../views/OrderListView';
 import OrderItemView from '../views/OrderItemView';
 import LoginForm from '../views/LoginForm';
 import ModalContainer from '../views/ModalContainer';
+import Nav from '../views/Nav';
 import { applyMiddleware, createStore, compose, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
@@ -31,10 +32,7 @@ store.dispatch(validateUserDetails());
 
 class Main extends React.Component {
     constructor(props){
-        super(props)
-        this.state={
-            user_name:store.getState().user.user_name
-        }
+        super(props);
     }
 
     render() {
@@ -43,19 +41,7 @@ class Main extends React.Component {
                 <BrowserRouter>
                     <div>
 
-                        <div className="navbar">
-                            <p>POS</p>
-                            
-                            {store.getState().user.user_name!=="" && 
-                            <div>
-                            <div className="user_icon_div" >
-                            <i className="glyphicon glyphicon-user" id="user_icon"></i>
-                            </div>
-                            <div className="user_Label">
-                            {store.getState().user.user_name}
-                            </div></div>}
-                            
-                        </div>
+                        <Nav />
 
                         <div className="content">
                             <Route exact component={OrderView} path="/" />
