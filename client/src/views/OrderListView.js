@@ -98,7 +98,7 @@ class OrderListView extends React.Component {
 const mapStateToProps = state => {
     return {
         user: state.user,
-        orders: state.orders
+        orders: state.orders.data
 
     }
 }

@@ -59,7 +59,7 @@ class ItemCartModal extends React.Component {
                     <div className="card">
                       <div className="card-container">
                         <h5><b>{item.item_name}</b></h5>
-                        <img src="https://source.unsplash.com/collection/3225463/pizza/200x100"></img>
+                        <img src="https://source.unsplash.com/collection/3225463/200x100"></img>
                       </div>
                     </div>
 
@@ -87,6 +87,7 @@ class ItemCartModal extends React.Component {
                     <div className="card">
                       <div className="card-container">
                         <h5><b>{item.item_name}</b></h5>
+                        <img src="https://source.unsplash.com/collection/3543612/200x100"></img>
                       </div>
                     </div>
 
@@ -115,6 +116,7 @@ class ItemCartModal extends React.Component {
                     <div className="card">
                       <div className="card-container">
                         <h5><b>{item.item_name}</b></h5>
+                        <img src="https://source.unsplash.com/collection/2234763/200x100"></img>
                       </div>
                     </div>
 
@@ -144,6 +146,8 @@ class ItemCartModal extends React.Component {
                     <div className="card">
                       <div className="card-container">
                         <h5><b>{item.item_name}</b></h5>
+                        <img src="https://source.unsplash.com/collection/3128357/200x100"></img>
+                        
                       </div>
                     </div>
 
@@ -176,7 +180,7 @@ class ItemCartModal extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    items: state.items,
+    items: state.items.data,
     orderitems: state.orderitems
   }
 }

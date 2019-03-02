@@ -1,9 +1,14 @@
 import { RETRIVED_ORDERS_BY_USER } from '../actions/orderActions';
 
-export default function orderReducer(state = [], { type, payload }) {
+const initialState = {
+    isFetched: true,
+    data:[]
+};
+
+export default function orderReducer(state = initialState, { type, payload }) {
     switch (type) {
-        case RETRIVED_ORDERS_BY_USER: return payload;
-        default:return state;
+        case RETRIVED_ORDERS_BY_USER: return {...initialState,isFetched:true,data:payload};
+        default: return state;
     }
 }
 
