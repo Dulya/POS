@@ -23,11 +23,12 @@ exports.retreiveOrderById = (req, res) => {
             res.send(order);
         })
         .catch((err) => {
-            res.send(err);
+            res.status(404).json({message:err});
         });
 }
 
 exports.retreiveOrderByLoggedInUser = (req, res) => {
+    console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",req.user);
     Order.getAllOrdersByUserName(req.user.user_name)
         .then((order) => {
             res.json(order);

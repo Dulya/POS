@@ -36,18 +36,19 @@ describe('Testing order api routes', () => {
             .expect(200, done);
     });
 
-    it('should return status 401 if order id is not present', (done) => {
+    it('should return status 404 if order id is not present', (done) => {
         request(app)
             .get('/api/order/id/O00005')
             .set('cookie', token)
             .expect('Content-Type', /json/)
-            .expect(401)
-            .expect(401, done);
+            .expect(404)
+            .expect(404, done);
     });
 
     it('should return status 200 after retriving all orders by logged in user', (done) => {
         request(app)
-            .get('/api/user')
+            .get('/api/order/user')
+            .set('user',{user_name:'john'})
             .set('cookie', token)
             .expect('Content-Type', /json/)
             .expect(200)

@@ -33,23 +33,26 @@ Order.getOrderById = (order_id, result) => {
             items:[]
         }
 
-        sql.query("select orders.*,(select sum(order_item.quantity*item.price) from order_item join item on order_item.item_id=item.item_id where orders.order_id = order_item.order_id) as total_amount from orders where orders.order_id=? limit 1",[order_id],(err,order)=>{
-            if(order){  
+        sql.query("select orders.*,(select sum(order_item.quantity*item.price) from order_item join item on order_item.item_id=item.item_id where orders.order_id = order_item.order_id) as total_amount from orders where orders.order_id=? limit 1",[order_id],(error,order)=>{
+            if(error){
+                reject(error.sqlMessage);
+            }
+            if(order && order[0]){  
                 data.order_id=order[0].order_id;
                 data.created_date=order[0].created_date;
                 data.status=order[0].status;
                 data.total_amount=order[0].total_amount;
                 sql.query("select i.item_name,i.price,oi.* from order_item oi inner join item i on oi.item_id=i.item_id where oi.order_id=?",[order_id],(err,items)=>{
-                    if(items){
+                    if(!err){
                         data.items=items;
                         resolve(data);
                     }else{
-                        reject(err);
+                        reject(err.sqlMessage);
                     }
                 });
                 
             }else{
-                reject(err);
+                reject('Order is not found');
             }
         })   
     });
