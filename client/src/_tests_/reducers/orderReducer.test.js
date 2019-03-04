@@ -4,7 +4,7 @@ import itemReducer from '../../reducers/itemReducer.js';
 
 const initialState = {
     isFetched: false,
-    data:[]
+    data: []
 };
 
 describe("Order reducer testing", () => {
@@ -12,7 +12,7 @@ describe("Order reducer testing", () => {
         const action = { type: null };
         const expectedState = {
             isFetched: false,
-            data:[]
+            data: []
         };
         expect(orderReducer(initialState, action)).toEqual(expectedState);
     });
@@ -28,10 +28,10 @@ describe("Order reducer testing", () => {
                 total_amount: 8005
             }]
         }
-        const expectedState={
+        const expectedState = {
             ...initialState,
-            isFetched:true,
-            data:action.payload
+            isFetched: true,
+            data: action.payload
         }
     });
 });

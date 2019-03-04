@@ -1,12 +1,29 @@
-var supertest = require('supertest');  
+var supertest = require('supertest');
+var app = require('../app.js');
+const request = require('supertest');
 
-describe('User api routes', () => {
+let token;
+
+before((done) => {
+    request(app)
+        .post('/user/login')
+        .send({
+            user_name: 'john',
+            password: '123'
+        })
+        .end((err, response) => {
+            token = response.headers['set-cookie'][0].split(';')[0];
+            done();
+        })
+});
+
+describe('Testing item api routes', () => {
     it('should respond with all items', (done) => {
-        server.get('/api/item')
-        .expect('Content-type',/json/)
-        .expect(200)
-        .end((res,err) => {
-            res.status.should.equal(200);        
-        });
+        request(app)
+            .get('/api/item')
+            .set('cookie', token)
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .expect(200, done);
     });
 });

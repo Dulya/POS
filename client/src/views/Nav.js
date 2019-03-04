@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import '../css/header.css';
-import {validateUserDetails} from '../actions/userActions'
+import {validateUserDetails} from '../actions/userActions';
 
 var dateFormat = require('dateformat');
 
