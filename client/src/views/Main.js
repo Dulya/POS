@@ -13,8 +13,6 @@ import orderReducer from '../reducers/orderReducer';
 import orderitemReducer from '../reducers/orderitemReducer';
 import itemReducer from '../reducers/itemReducer';
 import modalReducer from '../reducers/modalReducer';
-import { validateUserDetails } from '../actions/userActions';
-
 
 const middleware = applyMiddleware(thunk);
 
@@ -30,9 +28,6 @@ const allReducers = combineReducers({
 const store = createStore(allReducers, composeEnhancer(middleware));
 
 class Main extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         return (

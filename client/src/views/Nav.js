@@ -4,12 +4,7 @@ import '../css/header.css';
 import { validateUserDetails } from '../actions/userActions';
 import { withRouter } from "react-router-dom";
 
-var dateFormat = require('dateformat');
-
 class Nav extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     componentDidMount() {
         this.props.onValidateUser()
