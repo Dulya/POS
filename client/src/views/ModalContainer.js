@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import ReactModal from 'react-modal';
 import ItemCartModal from './Modals'
-import {HideModal} from '../actions/modalActions'
+import { HideModal } from '../actions/modalActions'
 
 const mapStateToProps = state => {
     return {
@@ -27,20 +27,17 @@ class ModalContainer extends React.Component {
         if (!this.props.type || !this.props.open) {
             return null
         }
-        
+
         const SpecifiedModal = MODAL_TYPES[this.props.type];
-        console.log("items here",this.props.items);
 
         return (
-
             <div>
                 <ReactModal
                     isOpen={this.props.open}
                     onRequestClose={this.props.hideModal}
                     contentLabel="Example Modal"
-                    ariaHideApp={false}               
+                    ariaHideApp={false}
                 >
-                 
                     <SpecifiedModal
                         closeModal={this.props.hideModal} title={this.props.title} items={this.props.items}
                     />

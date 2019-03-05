@@ -7,6 +7,8 @@
     "test": "mocha"
   },
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "bcryptjs": "^2.4.3",
     "chai": "^4.2.0",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.5",

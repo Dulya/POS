@@ -24,14 +24,13 @@ const allReducers = combineReducers({
     orders: orderReducer,
     orderitems: orderitemReducer,
     items: itemReducer,
-    modal:modalReducer
+    modal: modalReducer
 });
 
 const store = createStore(allReducers, composeEnhancer(middleware));
 
-
 class Main extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
     }
 
@@ -40,21 +39,18 @@ class Main extends React.Component {
             <Provider store={store}>
                 <BrowserRouter>
                     <div>
-
                         <Nav />
-
                         <div className="content">
                             <Route exact component={OrderView} path="/" />
                             <Route component={LoginForm} path="/login" />
                             <Route component={OrderView} path="/orders" />
                             <Route component={OrderItemView} path="/order/:id" />
                             <Route component={ModalContainer} path="/modal" />
-                            
+
                         </div>
                     </div>
                 </BrowserRouter >
             </Provider>
-
         );
     }
 }

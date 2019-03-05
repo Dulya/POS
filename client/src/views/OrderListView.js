@@ -10,8 +10,8 @@ class OrderListView extends React.Component {
         this.state = {
             currentPage: 1,
             rowsPerPage: 5,
-            isFilter:false,
-            clickedFilter:'all'
+            isFilter: false,
+            clickedFilter: 'all'
         }
         this.handleRowClick = this.handleRowClick.bind(this);
         this.handleFilterOrders = this.handleFilterOrders.bind(this);
@@ -26,10 +26,10 @@ class OrderListView extends React.Component {
 
     }
 
-    handleFilterOrders(e){
+    handleFilterOrders(e) {
         this.setState({
-            isFilter:true,
-            clickedFilter:e.target.value
+            isFilter: true,
+            clickedFilter: e.target.value
         });
     }
 
@@ -38,29 +38,29 @@ class OrderListView extends React.Component {
             showTable: true
         });
         this.props.history.push("/order/" + order_id);
-        
+
     }
 
 
     render() {
-        let filterdOrders=this.props.orders;
-        if(this.state.isFilter){
-            if(this.state.clickedFilter==='all'){
-                filterdOrders=this.props.orders;
-            }else{
-                filterdOrders=this.props.orders.filter(order=>order.status===this.state.clickedFilter);
+        let filterdOrders = this.props.orders;
+        if (this.state.isFilter) {
+            if (this.state.clickedFilter === 'all') {
+                filterdOrders = this.props.orders;
+            } else {
+                filterdOrders = this.props.orders.filter(order => order.status === this.state.clickedFilter);
             }
-            
+
         }
         return (
-            <div>        
+            <div>
                 <div className="orderlist-wrapper">
-                <select  className="order-filter" onChange={e=>this.handleFilterOrders(e)}>
-                    <option value="">Filter order by status</option>
-                    <option value="all">All</option>
-                    <option value="open">Open</option>
-                    <option value="close">Closed</option>
-                </select>
+                    <select className="order-filter" onChange={e => this.handleFilterOrders(e)}>
+                        <option value="">Filter order by status</option>
+                        <option value="all">All</option>
+                        <option value="open">Open</option>
+                        <option value="close">Closed</option>
+                    </select>
                     <table className="table table-hover table table-bordered ">
                         <thead className="black white-text">
                             <tr className="table_row">

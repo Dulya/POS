@@ -24,7 +24,7 @@ User.getAllUsers = () => {
 
 User.authenticateUser = (user, result) => {
     return new Promise((resolve, reject) => {
-        sql.query("select * from user where user_name=? and password=?", [user.user_name,user.password], (err, res) => {
+        sql.query("select * from user where user_name=?", [user.user_name], (err, res) => {
             if (err) {
                 console.log("Error : ", err);
                 reject(err);

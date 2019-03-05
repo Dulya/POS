@@ -23,10 +23,8 @@ class ItemCartModal extends React.Component {
         console.log("Error : ", error);
       });
     this.setState({
-      itemsInOrder :this.props.orderitems.items.map(item => item.item_id)
+      itemsInOrder: this.props.orderitems.items.map(item => item.item_id)
     });
-    
-
   }
 
   handleAddItem(e, item_id) {
@@ -44,7 +42,7 @@ class ItemCartModal extends React.Component {
     console.log("item.category", this.state.currentTab);
     let categories = ['pizza', 'pasta', 'appetizer', 'beverages'];
     let filterdItems = this.props.items.filter(item => item.category.toLowerCase() === this.state.currentTab);
-    let itemsInOrder=this.state.itemsInOrder;
+    let itemsInOrder = this.state.itemsInOrder;
 
     return (
       <div>
@@ -114,11 +112,11 @@ class ItemCartModal extends React.Component {
                         {itemsInOrder.indexOf(item.item_id) > -1 ? "Already added" :
                           <div>
                             {itemsInOrder.indexOf(item.item_id) > -1 ? "Already added" :
-                          <div>
-                            <label >Quantity </label>
-                            <p> : <input id="data-input" type="number" defaultValue={0} onChange={e => this.handleAddItem(e, item.item_id)}></input></p>
+                              <div>
+                                <label >Quantity </label>
+                                <p> : <input id="data-input" type="number" defaultValue={0} onChange={e => this.handleAddItem(e, item.item_id)}></input></p>
 
-                          </div>}</div>}</div>
+                              </div>}</div>}</div>
 
                     </div>
                   </div>
@@ -145,7 +143,7 @@ class ItemCartModal extends React.Component {
                         <label >RS. {item.price} </label>
                       </div>
                       <div className="h-row">
-                      {itemsInOrder.indexOf(item.item_id) > -1 ? "Already added" :
+                        {itemsInOrder.indexOf(item.item_id) > -1 ? "Already added" :
                           <div>
                             <label >Quantity </label>
                             <p> : <input id="data-input" type="number" defaultValue={0} onChange={e => this.handleAddItem(e, item.item_id)}></input></p>

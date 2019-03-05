@@ -92,6 +92,7 @@ describe('OrderItem reducer testing', () => {
             isDeleted: true,
             ...initialState
         }
+        //expect(orderitemReducer(initialState, action)).toEqual(expectedState);;
     });
 
     it("when adding an order item, isAdded should be true and items should be chnaged", () => {
@@ -118,6 +119,6 @@ describe('OrderItem reducer testing', () => {
             isAdded: true,
             ...action.payload
         }
-        expect(orderitemReducer(initialState, action)).toEqual(expectedState);;
+        expect(orderitemReducer(initialState, action)).toEqual(expectedState);
     });
 });

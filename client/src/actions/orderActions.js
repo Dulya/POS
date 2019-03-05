@@ -10,7 +10,6 @@ export default function RetrieveOrdersByUserName() {
                     type: RETRIVED_ORDERS_BY_USER,
                     payload: orders.data
                 });
-
                 return orders;
             })
     }

@@ -19,6 +19,12 @@
     overflow-y: auto;
   }
 
+  .user-panel{
+    display:flex;
+    flex-direction: row;
+    width:200px;
+  }
+
   .user_icon_div{
     border-radius:50%;
     display:flex;

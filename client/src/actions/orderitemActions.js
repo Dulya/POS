@@ -11,7 +11,7 @@ export default function RetrieveItemsByOrderId(order_id) {
             .then(order => {
                 dispatch({
                     type: RETRIEVED_ORDER_ITEMS,
-                    payload:order.data
+                    payload: order.data
                 })
                 return order;
             })
@@ -32,7 +32,7 @@ export function UpdateOrderItem(updatedOrderItem) {
 
 export function DeleteOrderItem(orderitem_id) {
     return (dispatch) => {
-        return axios.delete("/api/orderitem/"+orderitem_id)
+        return axios.delete("/api/orderitem/" + orderitem_id)
             .then(res => {
                 dispatch({
                     type: DELETED_ORDER_ITEM,
@@ -42,22 +42,20 @@ export function DeleteOrderItem(orderitem_id) {
     }
 }
 
-export function AddOrderItem(order_id,item_id,quantity) {
-    const orderitem={
-        order_id:order_id,
-        item_id:item_id,
-        quantity:quantity
+export function AddOrderItem(order_id, item_id, quantity) {
+    const orderitem = {
+        order_id: order_id,
+        item_id: item_id,
+        quantity: quantity
     }
     return (dispatch) => {
-        return axios.post("/api/orderitem",orderitem)
-            .then(res => {         
+        return axios.post("/api/orderitem", orderitem)
+            .then(res => {
                 dispatch(RetrieveItemsByOrderId(order_id));
             })
-            .catch(err=>{
-                console.log("Error",err);
+            .catch(err => {
+                console.log("Error", err);
             });
-
-            
     }
 }
 

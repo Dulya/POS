@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import '../css/header.css';
-import {validateUserDetails} from '../actions/userActions';
+import { validateUserDetails } from '../actions/userActions';
 import { withRouter } from "react-router-dom";
 
 var dateFormat = require('dateformat');
@@ -11,11 +11,11 @@ class Nav extends React.Component {
         super(props);
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.onValidateUser()
-        .catch( err =>{
-            this.props.history.push('/login');
-        });                      
+            .catch(err => {
+                this.props.history.push('/login');
+            });
     }
 
 
@@ -25,7 +25,7 @@ class Nav extends React.Component {
                 <p>POS</p>
 
                 {this.props.user.user_name !== "" &&
-                    <div>
+                    <div className="user-panel">
                         <div className="user_icon_div" >
                             <i className="glyphicon glyphicon-user" id="user_icon"></i>
                         </div>
