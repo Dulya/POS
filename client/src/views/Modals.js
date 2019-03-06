@@ -41,8 +41,9 @@ class ItemCartModal extends React.Component {
   render() {
     console.log("item.category", this.state.currentTab);
     let categories = ['pizza', 'pasta', 'appetizer', 'beverages'];
-    let filterdItems = this.props.items.filter(item => item.category.toLowerCase() === this.state.currentTab);
+    //let category_img_source=['3225463','3543612','2234763','3128357'];
     let itemsInOrder = this.state.itemsInOrder;
+    let filterdItems = this.props.items.filter(item => item.category.toLowerCase() === this.state.currentTab);
 
     return (
       <div>
@@ -51,149 +52,45 @@ class ItemCartModal extends React.Component {
           </button>
         </div>
         <div id="container">
-
           <div id="tabs">
             {categories.map((category, index) =>
               <button id="tabButton" key={index} value={category} onClick={e => this.openTab(e)} >{category}</button>
             )}
           </div>
           <div id="content">
-            {this.state.currentTab === 'pizza' &&
-              <div className="itemlist-wrapper">
-                {filterdItems.map((item, index) =>
-                  <div className="card-wrapper" key={index}>
-                    <div className="card">
-                      <div className="card-container">
-                        <h5><b>{item.item_name}</b></h5>
-                        <img src="https://source.unsplash.com/collection/3225463/200x100" alt="food-logo"></img>
-                      </div>
-                    </div>
-
-                    <div className="detail-panel">
-                      <div className="h-row">
-                        <label >{item.item_name} </label>
-                      </div>
-                      <div className="h-row">
-                        <label >RS. {item.price} </label>
-                      </div>
-                      <div className="h-row">
-                        {itemsInOrder.indexOf(item.item_id) > -1 ? "Already added" :
-                          <div>
-                            <label >Quantity </label>
-                            <p> : <input id="data-input" type="number" defaultValue={0} onChange={e => this.handleAddItem(e, item.item_id)}></input></p>
-
-                          </div>}
-                      </div>
-
+            <div className="itemlist-wrapper">
+              {filterdItems.map((item, index) =>
+                <div className="card-wrapper" key={index}>
+                  <div className="card">
+                    <div className="card-container">
+                      <h5><b>{item.item_name}</b></h5>
+                      <img src="https://source.unsplash.com/collection/3225463/200x100" alt="food-logo"></img>
                     </div>
                   </div>
-                )}
-              </div>}
-            {this.state.currentTab === 'pasta' &&
-              <div className="itemlist-wrapper">
 
-                {filterdItems.map((item, index) =>
-                  <div className="card-wrapper" key={index}>
-                    <div className="card">
-                      <div className="card-container">
-                        <h5><b>{item.item_name}</b></h5>
-                        <img src="https://source.unsplash.com/collection/3543612/200x100" alt="food-logo"></img>
-                      </div>
+                  <div className="detail-panel">
+                    <div className="h-row">
+                      <label >{item.item_name} </label>
                     </div>
-
-                    <div className="detail-panel">
-                      <div className="h-row">
-                        <label >{item.item_name} </label>
-                      </div>
-                      <div className="h-row">
-                        <label >RS. {item.price} </label>
-                      </div>
-                      <div className="h-row">
-                        {itemsInOrder.indexOf(item.item_id) > -1 ? "Already added" :
-                          <div>
-                            {itemsInOrder.indexOf(item.item_id) > -1 ? "Already added" :
-                              <div>
-                                <label >Quantity </label>
-                                <p> : <input id="data-input" type="number" defaultValue={0} onChange={e => this.handleAddItem(e, item.item_id)}></input></p>
-
-                              </div>}</div>}</div>
-
+                    <div className="h-row">
+                      <label >RS. {item.price} </label>
+                    </div>
+                    <div className="h-row">
+                      {itemsInOrder.indexOf(item.item_id) > -1 ? "Already added" :
+                        <div>
+                          <label >Quantity </label>
+                          <p> : <input id="data-input" type="number" defaultValue={0} onChange={e => this.handleAddItem(e, item.item_id)}></input></p>
+                        </div>}
                     </div>
                   </div>
-                )}
-              </div>}
-
-            {this.state.currentTab === 'appetizer' &&
-              <div className="itemlist-wrapper">
-
-                {filterdItems.map((item, index) =>
-                  <div className="card-wrapper" key={index}>
-                    <div className="card">
-                      <div className="card-container">
-                        <h5><b>{item.item_name}</b></h5>
-                        <img src="https://source.unsplash.com/collection/2234763/200x100" alt="food-logo"></img>
-                      </div>
-                    </div>
-
-                    <div className="detail-panel">
-                      <div className="h-row">
-                        <label >{item.item_name} </label>
-                      </div>
-                      <div className="h-row">
-                        <label >RS. {item.price} </label>
-                      </div>
-                      <div className="h-row">
-                        {itemsInOrder.indexOf(item.item_id) > -1 ? "Already added" :
-                          <div>
-                            <label >Quantity </label>
-                            <p> : <input id="data-input" type="number" defaultValue={0} onChange={e => this.handleAddItem(e, item.item_id)}></input></p>
-
-                          </div>}</div>
-
-                    </div>
-                  </div>
-                )}
-              </div>}
-
-
-            {this.state.currentTab === 'beverages' &&
-              <div className="itemlist-wrapper">
-
-                {filterdItems.map((item, index) =>
-                  <div className="card-wrapper" key={index}>
-                    <div className="card">
-                      <div className="card-container">
-                        <h5><b>{item.item_name}</b></h5>
-                        <img src="https://source.unsplash.com/collection/3128357/200x100" alt="food-logo"></img>
-
-                      </div>
-                    </div>
-
-                    <div className="detail-panel">
-                      <div className="h-row">
-                        <label >{item.item_name} </label>
-                      </div>
-                      <div className="h-row">
-                        <label >RS. {item.price} </label>
-                      </div>
-                      <div className="h-row">
-                        <label >Quantity </label>
-                        <p> : <input id="data-input" type="number" defaultValue={0} onChange={e => this.handleAddItem(e, item.item_id)}></input></p>
-                      </div>
-
-                    </div>
-                  </div>
-                )}
-              </div>}
-
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
-
-
     );
   }
-
 }
 
 const mapStateToProps = state => {

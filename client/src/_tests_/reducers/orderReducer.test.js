@@ -33,5 +33,6 @@ describe("Order reducer testing", () => {
             isFetched: true,
             data: action.payload
         }
+        expect(orderReducer(initialState, action)).toEqual(expectedState);
     });
 });

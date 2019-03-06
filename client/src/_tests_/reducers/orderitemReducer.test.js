@@ -81,7 +81,7 @@ describe('OrderItem reducer testing', () => {
         expect(orderitemReducer(initialState, action)).toEqual(expectedState);
     });
 
-    it("when deleting an order item, isDeleted Should be true and items should be changed", () => {
+    it("when deleting an order item, isDeleted Should be true", () => {
         const action = {
             type: DELETED_ORDER_ITEM,
             payload: 'O00001'
@@ -90,9 +90,8 @@ describe('OrderItem reducer testing', () => {
         const expectedState = {
             ...initialState,
             isDeleted: true,
-            ...initialState
         }
-        //expect(orderitemReducer(initialState, action)).toEqual(expectedState);;
+        expect(orderitemReducer(initialState, action)).toEqual(expectedState);;
     });
 
     it("when adding an order item, isAdded should be true and items should be chnaged", () => {
