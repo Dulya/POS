@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import { loginUser, validateUserDetails } from "../actions/userActions";
 
-class LoginForm extends React.Component {
+export class LoginForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -49,7 +49,7 @@ class LoginForm extends React.Component {
                         Sign In
                     </div>
                     <div className="inner-box">
-                        <form onSubmit={this.handleSubmit}>
+                        <form id="loginSubmissionForm" >
                             <div className="form-group">
                                 <label>User Name  </label>
                                 <input id="userinput" name="username" className="input-group-text" type="text" value={this.state.user_name || ''} onChange={this.updateUsername} />
@@ -60,17 +60,15 @@ class LoginForm extends React.Component {
                                 <input id="password" name="password" className="input-group-text" type="password" value={this.state.password || ''} onChange={this.updatePassword} />
 
                             </div>
-                            <input id="submit-button" type="submit" value="Sign In" className="btn btn-info" />
+                            <input id="submit-button" type="submit" value="Sign In" className="btn btn-info" onClick={this.handleSubmit}/>
 
                         </form>
                         {this.props.user}
                     </div>
                 </div>
             </div>
-
         );
     }
-
 }
 
 const mapActionsToProps = {
@@ -78,6 +76,7 @@ const mapActionsToProps = {
     afterValidateUser: validateUserDetails
 }
 
-export default connect(null, mapActionsToProps)(LoginForm);
+const LoginFormContainer=connect(null, mapActionsToProps)(LoginForm);
+export default LoginFormContainer;
 
 

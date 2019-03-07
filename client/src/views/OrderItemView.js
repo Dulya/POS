@@ -57,7 +57,6 @@ class OrderItemView extends React.Component {
         });
     }
 
-
     handlePagination(event) {
         this.setState({
             currentPage: Number(event.target.id)
@@ -92,8 +91,6 @@ class OrderItemView extends React.Component {
                 </li>
             );
         });
-
-
 
         return (
             <div>

@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "mocha"
+    "test": "nyc mocha --exit",
+    "test-coverage": "NODE_ENV=test istanbul cover _mocha —- -R spec"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
@@ -22,7 +23,9 @@
     "uglify-js": "^2.6.0"
   },
   "devDependencies": {
+    "istanbul": "^0.4.5",
     "mocha": "^6.0.2",
+    "nyc": "^13.3.0",
     "should": "^13.2.3",
     "supertest": "^3.4.2"
   }

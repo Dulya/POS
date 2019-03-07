@@ -23,7 +23,6 @@ class OrderListView extends React.Component {
         onRetrieveOrders().catch((error) => {
             this.props.history.push('/login');
         });
-
     }
 
     handleFilterOrders(e) {
@@ -90,7 +89,6 @@ class OrderListView extends React.Component {
                 </div>
             </div>
         );
-
     }
 
 }
