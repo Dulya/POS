@@ -42,7 +42,26 @@ describe('Testing orderitem api routes', () => {
             .set('cookie', token)
             .expect('Content-Type', /json/)
             .expect(200)
-            .expect(200, done);
+            .end(done);
+            
+    });
+
+    it('should return status 404 when row is not found for update query', (done) => {
+        request(app)
+            .put('/api/orderitem')
+            .send({
+                item_name: "Vanilla Milk Shake (300ml)",
+                price: 400,
+                orderitem_id: 23,
+                order_id: "O00001",
+                item_id: 10,
+                quantity: 4
+            })
+            .set('cookie', token)
+            .expect('Content-Type', /json/)
+            .expect(404)
+            .end(done);
+            
     });
 
     it('should return status 200 after adding a new orderitem', (done) => {

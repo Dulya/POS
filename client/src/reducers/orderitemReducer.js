@@ -17,7 +17,7 @@ const initialState = {
 export default function orderitemReducer(state = initialState, { type, payload }) {
     switch (type) {
         case RETRIEVED_ORDER_ITEMS: return { ...state, isFetched: true, ...payload };
-        case UPDATED_ORDER_ITEM: return { ...state, isUpdated: true, ...payload };
+        case UPDATED_ORDER_ITEM: return { ...state, isUpdated: true, ...payload};
         case DELETED_ORDER_ITEM:
             const newDeleteState = Object.assign({}, state);
             newDeleteState.items = newDeleteState.items.filter(item => item.orderitem_id !== payload);

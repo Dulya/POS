@@ -44,19 +44,13 @@ OrderItem.updateOrderItem = (orderitem, result) => {
     return new Promise((resolve, reject) => {
         sql.query("update order_item set quantity = ? where orderitem_id = ?", [orderitem.quantity, orderitem.orderitem_id], (err, res) => {
             if (err) {
-                console.log("Error : ", err);
                 reject(err);
             } else {
-                console.log(res);
-                resolve(res);
+                resolve(res.affectedRows);
             }
         });
     });
 
 }
-
-
-
-
 
 module.exports = OrderItem;

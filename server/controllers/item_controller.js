@@ -7,7 +7,7 @@ exports.getAllItems = (req, res) => {
         .then((item) => {
             res.json(item);
         })
-        .catch((err) => {
+        /*.catch((err) => {
             res.send(err);
-        });
+        });*/
 }

@@ -6,9 +6,9 @@ exports.addOrderItem = (req, res) => {
             .then((result) => {
                 res.json(result);
             })
-            .catch((err) => {
-                res.send(err);
-            });   
+            /*.catch((err) => {
+                res.status(500).send({"message":err.sqlMessage});
+            });   */
 }
 
 exports.removeOrderItem = (req, res) => {
@@ -16,19 +16,24 @@ exports.removeOrderItem = (req, res) => {
         .then((result) => {
             res.send(result);
         })
-        .catch((err) => {
-            res.send(err);
-        });
+        /*.catch((err) => {
+            res.status(500).send({"message":err.sqlMessage});
+        });*/
 }
 
 exports.updateOrderItem = (req, res) => {
     OrderItem.updateOrderItem(req.body)
-        .then((orderitem) => {
-            res.json(orderitem);
+        .then((affectedRows) => {
+            if(affectedRows===0){
+                res.status(404).send({"message":"No row found for update"});
+            }else{
+                res.status(200).send({"message":"Updated successfuly"});
+            }
+            
         })
-        .catch((err) => {
-            res.send(err);
-        });
+       /*.catch((err) => {     
+            res.status(500).send({"message":err.sqlMessage});
+        });*/
 }
 
 

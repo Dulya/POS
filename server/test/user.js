@@ -1,0 +1,29 @@
+var supertest = require('supertest');
+var app = require('../app.js');
+const request = require('supertest');
+
+let token;
+
+describe('Testing user api routes', () => {
+    it('should respond with status 200 on successful user', (done) => {
+        request(app)
+        .post('/user/login')
+        .send({
+            user_name: 'john',
+            password: '123'
+        })
+        .expect(200,done)
+       
+    });
+
+    it('should respond with status 403 on incorrect password on login', (done) => {
+        request(app)
+        .post('/user/login')
+        .send({
+            user_name: 'john',
+            password: 'pass'
+        })
+        .expect(403,done)
+        
+    });
+});
