@@ -9,7 +9,7 @@ exports.retreiveOrderById = (req, res) => {
             res.send(order);
         })
         .catch((err) => {
-            res.status(404).json({message:err});
+            res.status(404).json({ "message": err.sqlMessage });
         });
 }
 
@@ -18,10 +18,9 @@ exports.retreiveOrderByLoggedInUser = (req, res) => {
         .then((order) => {
             res.json(order);
         })
-       /* .catch((err) => {
-            
-            res.json({message:err});
-        });*/
+        .catch((err) => {
+            res.status(404).json({ "message": err.sqlMessage });
+        });
 }
 
 

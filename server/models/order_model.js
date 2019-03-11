@@ -23,7 +23,7 @@ Order.getOrderById = (order_id, result) => {
 
         sql.query("select orders.*,(select sum(order_item.quantity*item.price) from order_item join item on order_item.item_id=item.item_id where orders.order_id = order_item.order_id) as total_amount from orders where orders.order_id=? limit 1",[order_id],(error,order)=>{
             if(error){
-                reject(error.sqlMessage);
+                reject(error);
             }
             if(order && order[0]){  
                 data.order_id=order[0].order_id;
@@ -35,7 +35,7 @@ Order.getOrderById = (order_id, result) => {
                         data.items=items;
                         resolve(data);
                     }else{
-                        reject(err.sqlMessage);
+                        reject(err);
                     }
                 });
                 

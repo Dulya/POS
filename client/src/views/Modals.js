@@ -78,8 +78,7 @@ class ItemCartModal extends React.Component {
                     <div className="h-row">
                       {itemsInOrder.indexOf(item.item_id) > -1 ? "Already added" :
                         <div>
-                          <label >Quantity </label>
-                          <p> : <input id="data-input" type="number" defaultValue={0} onChange={e => this.handleAddItem(e, item.item_id)}></input></p>
+                          <p>  <input id="data-input" type="number" defaultValue={0} onChange={e => this.handleAddItem(e, item.item_id)}></input></p>
                         </div>}
                     </div>
                   </div>

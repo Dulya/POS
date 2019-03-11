@@ -60,7 +60,7 @@ class OrderListView extends React.Component {
                         <option value="open">Open</option>
                         <option value="close">Closed</option>
                     </select>
-                    <table className="table table-hover table table-bordered ">
+                    <table id="order-table" className="table table-hover table table-bordered ">
                         <thead className="black white-text">
                             <tr className="table_row">
                                 <th className="table_cell" scope="col"></th>
