@@ -37,7 +37,6 @@ class OrderListView extends React.Component {
             showTable: true
         });
         this.props.history.push("/order/" + order_id);
-
     }
 
 
@@ -90,14 +89,12 @@ class OrderListView extends React.Component {
             </div>
         );
     }
-
 }
 
 const mapStateToProps = state => {
     return {
         user: state.user,
         orders: state.orders.data
-
     }
 }
 

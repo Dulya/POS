@@ -13,7 +13,6 @@ class Nav extends React.Component {
             });
     }
 
-
     render() {
         return (
             <div className="navbar">
@@ -41,7 +40,5 @@ const mapStateToProps = state => {
 const mapActionsToProps = {
     onValidateUser: validateUserDetails,
 }
-
-
 
 export default withRouter(connect(mapStateToProps, mapActionsToProps)(Nav));

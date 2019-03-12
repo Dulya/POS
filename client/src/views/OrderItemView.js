@@ -96,7 +96,6 @@ class OrderItemView extends React.Component {
             <div>
                 <ModalContainer />
                 <div>
-
                     <div className="order-wrapper">
                         <table id="table-order" className="table table-default ">
                             <thead className="black white-text">
