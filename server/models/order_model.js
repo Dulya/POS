@@ -1,4 +1,5 @@
 'user strict';
+var app=require('../app.js');
 var sql = require('../utils/db_connection.js');
 
 const Order = function (order) {
@@ -9,8 +10,8 @@ const Order = function (order) {
         this.total_amount=order.total_amount;
 }
 
-
 Order.getOrderById = (order_id, result) => {
+    
     return new Promise((resolve, reject) => {
 
         const data={

@@ -7,7 +7,7 @@ var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'Chamo@1993',
-    database: 'pos_db',
+    database: 'pos_db'
 });
 
 connection.connect(err => {
@@ -16,3 +16,9 @@ connection.connect(err => {
 });
 
 module.exports = connection;
+
+/*
+ host: 'localhost',
+    user: 'root',
+    password: 'Chamo@1993',
+    database: 'pos_db',*/
