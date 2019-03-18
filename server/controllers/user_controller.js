@@ -37,14 +37,10 @@ exports.logInUser = (req, res) => {
         .catch(err => {
             res.send(err);
         });
+}
 
-    exports.logoutUser = (req, res) => {
-        req.session.destroy((success, err) => {
-            if (err) {
-                res.send({ 'message': err });
-            }
-            res.send({ "message": 'cookie deleted' });
-        });
-        
-    }
+exports.logoutUser = (req, res) => {
+    res.clearCookie("token");
+    console.log("no errorrrrrrrr");
+    res.json({ "message": 'cookie deleted' });
 }

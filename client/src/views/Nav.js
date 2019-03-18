@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import '../css/header.css';
-import { validateUserDetails,logoutUser } from '../actions/userActions';
+import { validateUserDetails, logoutUser } from '../actions/userActions';
 import { withRouter } from "react-router-dom";
 
 class Nav extends React.Component {
@@ -19,11 +19,10 @@ class Nav extends React.Component {
     }
 
     handleLogout() {
-       
         this.props.onLogoutUser()
             .then(res => {
                 this.props.history.push('/login');
-            })   
+            })
     }
 
     render() {
@@ -37,7 +36,7 @@ class Nav extends React.Component {
                             <img src="https://source.unsplash.com/collection/2454015/50x50" alt="user-logo" style={{ borderRadius: '50%' }}></img>
                         </div>
                         <div className="user_Label">
-                            {this.props.user.user_name.charAt(0).toUpperCase() + this.props.user.user_name.slice(1, this.props.user.user_name.length)}
+                           {this.props.user.user_name}
                         </div>
                         <div className="logoutPanel" >
                             <span style={{ color: 'white', fontSize: '20px' }}>
@@ -62,7 +61,7 @@ const mapStateToProps = state => {
 
 const mapActionsToProps = {
     onValidateUser: validateUserDetails,
-    onLogoutUser:logoutUser
+    onLogoutUser: logoutUser
 }
 
 export default withRouter(connect(mapStateToProps, mapActionsToProps)(Nav));

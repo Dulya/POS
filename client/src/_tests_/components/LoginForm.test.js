@@ -15,7 +15,7 @@ let container;
 let component;
 let store;
 const initialState = {};
- 
+
 describe('Container <LoginForm>', () => {
     beforeEach(() => {
         //create the store with initial state

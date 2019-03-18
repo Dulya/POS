@@ -1,6 +1,11 @@
+.breadcrumbPanel{
+    width:90%;
+    margin:10px auto 5px 30px;
+    font-size: 16px;
+}
 .order-wrapper{
     width:80%;
-    margin:10px auto 5px auto;
+    margin:10px auto 0px auto;
     font-size: 16px;
 }
 
@@ -13,10 +18,10 @@
 
 .orderdetail-wrapper{
     width:80%;
-    margin:20px auto auto auto;
+    margin:0px auto auto auto;
     font-size: 16px;
     height:650px; 
-    padding:10px;
+    padding:5px;
 }
 
 .orderdetail-header{

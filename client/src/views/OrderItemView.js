@@ -4,6 +4,7 @@ import RetrieveItemsByOrderId from '../actions/orderitemActions';
 import ModalContainer from './ModalContainer';
 import { OpenModal, HideModal } from '../actions/modalActions';
 import { UpdateOrderItem, DeleteOrderItem } from '../actions/orderitemActions';
+import { Link } from 'react-router-dom';
 
 
 var dateFormat = require('dateformat');
@@ -96,6 +97,9 @@ class OrderItemView extends React.Component {
             <div>
                 <ModalContainer />
                 <div>
+                    <div className="breadcrumbPanel">
+                        <Link to="/orders">Orders </Link><span className="glyphicon glyphicon-play" style={{color:'#007bff'}}></span> <Link to="/order/:id">Order Details</Link>
+                    </div>
                     <div className="order-wrapper">
                         <table id="table-order" className="table table-default ">
                             <thead className="black white-text">
