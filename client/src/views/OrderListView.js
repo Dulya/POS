@@ -54,7 +54,7 @@ class OrderListView extends React.Component {
             <div>
                 <div className="orderlist-wrapper">
                     <select className="order-filter" onChange={e => this.handleFilterOrders(e)}>
-                        <option value="">Filter order by status</option>
+                       
                         <option value="all">All</option>
                         <option value="open">Open</option>
                         <option value="close">Closed</option>

@@ -10,20 +10,22 @@
 #tabs {
     height: 50px;
     width: 100%;
-    background-color: rgb(193, 220, 247);
+    background-color: black;
 }
 
 #tabButton {
   float: left;
-  background-color: rgb(193, 220, 247);
+  background-color: black;
   cursor: pointer;
   outline:none;
-  border-block-end-color:1px solid white;
+  border-block-end-color:white;
+  border-block-start-color:white;
   height:50px;
   font-size:16px;
   font-weight: 800;
   padding: 15px;
   transition: 0.3s;
+  color:white;
  
 }
 

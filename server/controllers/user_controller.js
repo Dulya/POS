@@ -7,7 +7,7 @@ var User = require('../models/user_model');
 exports.logInUser = (req, res) => {
     User.authenticateUser(req.body)
         .then(user => {
-            if(user[0]){
+            if (user[0]) {
                 bcrypt.compare(req.body.password, user[0].password, (error, isCorrectPassword) => {
                     if (error) {
                         res.send(error);
@@ -30,11 +30,21 @@ exports.logInUser = (req, res) => {
                         });
                     }
                 });
-           }else{
-                res.status(404).json({"message" : "User not found"});
-            }  
+            } else {
+                res.status(404).json({ "message": "User not found" });
+            }
         })
         .catch(err => {
             res.send(err);
         });
+
+    exports.logoutUser = (req, res) => {
+        req.session.destroy((success, err) => {
+            if (err) {
+                res.send({ 'message': err });
+            }
+            res.send({ "message": 'cookie deleted' });
+        });
+        
+    }
 }
