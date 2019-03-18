@@ -2,7 +2,6 @@
 var express = require("express");
 var Item = require('../models/item_model.js');
 
-
 exports.getAllItems = (req, res) => {
     Item.getAllItems()
         .then((item) => {

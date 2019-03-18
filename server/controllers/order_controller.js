@@ -2,7 +2,6 @@
 var express = require("express");
 var Order = require('../models/order_model.js');
 
-
 exports.retreiveOrderById = (req, res) => {
     Order.getOrderById(req.params.order_id)
         .then((order) => {

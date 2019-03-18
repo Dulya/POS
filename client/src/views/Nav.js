@@ -21,10 +21,10 @@ class Nav extends React.Component {
                 {this.props.user.user_name !== "" &&
                     <div className="user-panel">
                         <div className="user_icon_div" >
-                            <i className="glyphicon glyphicon-user" id="user_icon"></i>
+                            <img src="https://source.unsplash.com/collection/2454015/50x50" alt="user-logo" style={{ borderRadius: '50%' }}></img>
                         </div>
                         <div className="user_Label">
-                            {this.props.user.user_name}
+                            {this.props.user.user_name.charAt(0).toUpperCase()+this.props.user.user_name.slice(1, this.props.user.user_name.length)}
                         </div></div>}
             </div>
         );

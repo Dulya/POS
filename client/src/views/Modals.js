@@ -15,6 +15,7 @@ class ItemCartModal extends React.Component {
     }
     this.handleAddItem = this.handleAddItem.bind(this);
     this.openTab = this.openTab.bind(this);
+    this.capitalizeFirstLetter = this.capitalizeFirstLetter.bind(this);
   }
 
   componentDidMount() {
@@ -37,6 +38,10 @@ class ItemCartModal extends React.Component {
     });
   }
 
+  capitalizeFirstLetter(text){
+    return text.charAt(0).toUpperCase()+text.slice(1,text.length);
+  }
+
 
   render() {
     console.log("item.category", this.state.currentTab);
@@ -54,7 +59,7 @@ class ItemCartModal extends React.Component {
         <div id="container">
           <div id="tabs">
             {categories.map((category, index) =>
-              <button id="tabButton" key={index} value={category} onClick={e => this.openTab(e)} >{category}</button>
+              <button id="tabButton" key={index} value={category} onClick={e => this.openTab(e)} >{this.capitalizeFirstLetter(category)}</button>
             )}
           </div>
           <div id="content">
