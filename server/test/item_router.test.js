@@ -8,7 +8,7 @@ before((done) => {
     request(app)
         .post('/user/login')
         .send({
-            user_name: 'john',
+            email: 'john.smith@gmail.com',
             password: '123'
         })
         .end((err, response) => {

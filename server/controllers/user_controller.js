@@ -10,10 +10,10 @@ exports.logInUser = (req, res) => {
             if (user[0]) {
                 bcrypt.compare(req.body.password, user[0].password, (error, isCorrectPassword) => {
                     if (error) {
-                        res.send(error);
+                        res.json({"message":error});
                     }
                     if (!isCorrectPassword) {
-                        res.status(403).send();
+                        res.status(403).json({"message":"Incorrect Password."});
                     } else {
                         const payload = {
                             email:user[0].email,
@@ -32,7 +32,7 @@ exports.logInUser = (req, res) => {
                     }
                 });
             } else {
-                res.status(404).json({ "message": "User not found" });
+                res.status(404).json({ "message": "User not found." });
             }
         })
         .catch(err => {

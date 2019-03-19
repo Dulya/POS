@@ -9,7 +9,7 @@ describe('Testing user api routes', () => {
         request(app)
             .post('/user/login')
             .send({
-                user_name: 'john',
+                email: 'john.smith@gmail.com',
                 password: '123'
             })
             .expect(200, done)
@@ -20,7 +20,7 @@ describe('Testing user api routes', () => {
         request(app)
             .post('/user/login')
             .send({
-                user_name: 'john',
+                email: 'john.smith@gmail.com',
                 password: 'pass'
             })
             .expect(403, done)

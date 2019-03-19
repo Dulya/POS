@@ -7,7 +7,6 @@ export function validateUserDetails() {
     return (dispatch) => {
         return axios.get('/api/session')
             .then(user => {
-                console.log("this is user :", user.data);
                 dispatch({
                     type: VALIDATE_USER,
                     payload: user.data
@@ -27,7 +26,7 @@ export function loginUser(email, password) {
                 });
             })
             .catch(err => {
-                console.log("Error Log In. Please Try Again.", err);
+                throw new Error(err.response.data.message);
             });
     }
 }

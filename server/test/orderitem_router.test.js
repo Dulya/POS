@@ -8,7 +8,7 @@ before((done) => {
     request(app)
         .post('/user/login')
         .send({
-            user_name: 'john',
+            email: 'john.smith@gmail.com',
             password: '123'
         })
         .end((err, response) => {
@@ -20,7 +20,7 @@ before((done) => {
 describe('Testing orderitem api routes', () => {
     it('should return status 200 after deleting the orderitem with given id', (done) => {
         request(app)
-            .delete('/api/orderitem/3')
+            .delete('/api/orderitem/5')
             .set('cookie', token)
             .expect('Content-Type', /json/)
             .expect(200)
@@ -54,7 +54,7 @@ describe('Testing orderitem api routes', () => {
             .send({
                 item_name: "Vanilla Milk Shake (300ml)",
                 price: 400,
-                orderitem_id: 4,
+                orderitem_id: 6,
                 order_id: "O00001",
                 item_id: 10,
                 quantity: 4
@@ -121,7 +121,7 @@ describe('Testing orderitem api routes', () => {
             .send({
                 item_name: "Vanilla Milk Shake (300ml)",
                 price: 400,
-                orderitem_id: 4,
+                orderitem_id: 6,
                 order_id: "O00001",
                 item_id: 10,
                 quantity: 'abc'
