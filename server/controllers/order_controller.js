@@ -13,7 +13,7 @@ exports.retreiveOrderById = (req, res) => {
 }
 
 exports.retreiveOrderByLoggedInUser = (req, res) => {
-    Order.getAllOrdersByUserName(req.user.user_name)
+    Order.getAllOrdersByUserName(req.user.email)
         .then((order) => {
             res.json(order);
         })

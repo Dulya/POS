@@ -30,13 +30,14 @@ class Nav extends React.Component {
             <div className="navbar">
                 <p>POS</p>
 
-                {this.props.user.user_name !== "" &&
+                {this.props.user.email !== "" &&
                     <div className="user-panel">
                         <div className="user_icon_div" >
                             <img src="https://source.unsplash.com/collection/2454015/50x50" alt="user-logo" style={{ borderRadius: '50%' }}></img>
                         </div>
-                        <div className="user_Label">
-                           {this.props.user.user_name}
+                        <div className="userLabel">
+                        {this.props.user.user_name.charAt(0).toUpperCase()+this.props.user.user_name.slice(1,this.props.user.user_name.length)}
+                           
                         </div>
                         <div className="logoutPanel" >
                             <span style={{ color: 'white', fontSize: '20px' }}>

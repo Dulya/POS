@@ -11,7 +11,7 @@ var User = function (user) {
 
 User.authenticateUser = (user, result) => {
     return new Promise((resolve, reject) => {
-        sql.query("select * from user where user_name=?", [user.user_name], (err, res) => {
+        sql.query("select * from user where email=?", [user.email], (err, res) => {
             if (err) {
                 reject(err);
             } else {

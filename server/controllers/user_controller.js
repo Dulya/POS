@@ -16,6 +16,7 @@ exports.logInUser = (req, res) => {
                         res.status(403).send();
                     } else {
                         const payload = {
+                            email:user[0].email,
                             user_name: user[0].user_name,
                             user_type: user[0].user_type
                         };
@@ -41,6 +42,5 @@ exports.logInUser = (req, res) => {
 
 exports.logoutUser = (req, res) => {
     res.clearCookie("token");
-    console.log("no errorrrrrrrr");
-    res.json({ "message": 'cookie deleted' });
+    res.json({email:"",user_name:"",user_type:""});
 }

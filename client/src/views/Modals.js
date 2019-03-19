@@ -29,6 +29,7 @@ class ItemCartModal extends React.Component {
   }
 
   handleAddItem(e, item_id) {
+    console.log("here adding an item");
     this.props.onAddOrderItem(this.props.orderitems.order_id, item_id, e.target.value);
   }
 
@@ -44,7 +45,6 @@ class ItemCartModal extends React.Component {
 
 
   render() {
-    console.log("item.category", this.state.currentTab);
     let categories = ['pizza', 'pasta', 'appetizer', 'beverages'];
     //let category_img_source=['3225463','3543612','2234763','3128357'];
     let itemsInOrder = this.state.itemsInOrder;

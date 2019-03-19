@@ -3,6 +3,7 @@ import { LOGOUT_USER } from '../actions/userActions';
 
 
 const initialState = {
+    email:"",
     user_name: "",
     user_type: ""
 }

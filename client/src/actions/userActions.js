@@ -17,9 +17,9 @@ export function validateUserDetails() {
     }
 }
 
-export function loginUser(user_name, password) {
+export function loginUser(email, password) {
     return (dispatch) => {
-        return axios.post('/user/login', { user_name, password })
+        return axios.post('/user/login', { email, password })
             .then(user => {
                 dispatch({
                     type: VALIDATE_USER,

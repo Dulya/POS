@@ -48,9 +48,9 @@ Order.getOrderById = (order_id, result) => {
 }
 
 
-Order.getAllOrdersByUserName = (user_name, result) => {
+Order.getAllOrdersByUserName = (email, result) => {
     return new Promise((resolve, reject) => {
-        sql.query("select orders.*,(select sum(order_item.quantity*item.price) from order_item join item on order_item.item_id=item.item_id where orders.order_id = order_item.order_id) as total_amount from orders where orders.user_name=?", [user_name], (err, res) => {
+        sql.query("select orders.*,(select sum(order_item.quantity*item.price) from order_item join item on order_item.item_id=item.item_id where orders.order_id = order_item.order_id) as total_amount from orders where orders.user=?", [email], (err, res) => {
             if (err) {
                 console.log("Error : ", err);
                 reject(err.sqlMessage);

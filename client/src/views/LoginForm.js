@@ -6,7 +6,7 @@ export class LoginForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            user_name: "",
+            email:"",
             password: "",
         };
         this.updateUsername = this.updateUsername.bind(this);
@@ -25,14 +25,14 @@ export class LoginForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.loginUser(this.state.user_name, this.state.password).then((res) => {
+        this.props.loginUser(this.state.email, this.state.password).then((res) => {
             this.props.history.push("/orders");
         });
     }
 
     updateUsername(e) {
         e.preventDefault();
-        this.setState({ user_name: e.target.value })
+        this.setState({ email: e.target.value })
     }
 
     updatePassword(e) {
@@ -51,8 +51,8 @@ export class LoginForm extends React.Component {
                     <div className="inner-box">
                         <form id="loginSubmissionForm" >
                             <div className="form-group">
-                                <label>User Name  </label>
-                                <input id="userinput" name="username" className="input-group-text" type="text" value={this.state.user_name || ''} onChange={this.updateUsername} />
+                                <label>Email  </label>
+                                <input id="userinput" name="username" className="input-group-text" type="text" value={this.state.email || ''} onChange={this.updateUsername} />
                             </div>
 
                             <div className="form-group">
