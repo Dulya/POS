@@ -1,28 +1,24 @@
-import React from 'react'
-import RetrieveItems from '../actions/itemActions';
-import { connect } from 'react-redux';
-import { AddOrderItem } from '../actions/orderitemActions';
-
+import React from "react";
+import RetrieveItems from "../actions/itemActions";
+import { connect } from "react-redux";
+import { AddOrderItem } from "../actions/orderitemActions";
 
 class ItemCartModal extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      currentTab: 'pizza',
+      currentTab: "pizza",
       itemsInOrder: []
-
-    }
+    };
     this.handleAddItem = this.handleAddItem.bind(this);
     this.openTab = this.openTab.bind(this);
     this.capitalizeFirstLetter = this.capitalizeFirstLetter.bind(this);
   }
 
   componentDidMount() {
-    this.props.onRetrieveItems()
-      .catch((error) => {
-        console.log("Error : ", error);
-      });
+    this.props.onRetrieveItems().catch(error => {
+      console.log("Error : ", error);
+    });
     this.setState({
       itemsInOrder: this.props.orderitems.items.map(item => item.item_id)
     });
@@ -30,7 +26,11 @@ class ItemCartModal extends React.Component {
 
   handleAddItem(e, item_id) {
     console.log("here adding an item");
-    this.props.onAddOrderItem(this.props.orderitems.order_id, item_id, e.target.value);
+    this.props.onAddOrderItem(
+      this.props.orderitems.order_id,
+      item_id,
+      e.target.value
+    );
   }
 
   openTab(e) {
@@ -39,56 +39,90 @@ class ItemCartModal extends React.Component {
     });
   }
 
-  capitalizeFirstLetter(text){
-    return text.charAt(0).toUpperCase()+text.slice(1,text.length);
+  capitalizeFirstLetter(text) {
+    return text.charAt(0).toUpperCase() + text.slice(1, text.length);
   }
 
-
   render() {
-    let categories = ['pizza', 'pasta', 'appetizer', 'beverages'];
+    let categories = ["pizza", "pasta", "appetizer", "beverages"];
     //let category_img_source=['3225463','3543612','2234763','3128357'];
     let itemsInOrder = this.state.itemsInOrder;
-    let filterdItems = this.props.items.filter(item => item.category.toLowerCase() === this.state.currentTab);
+    let filterdItems = this.props.items.filter(
+      item => item.category.toLowerCase() === this.state.currentTab
+    );
 
     return (
       <div>
-        <div >
-          <button type="button" id="close-btn" className="close" aria-label="Close" onClick={this.props.closeModal}> Close
+        <div>
+          <button
+            type="button"
+            id="close-btn"
+            className="close"
+            aria-label="Close"
+            onClick={this.props.closeModal}
+          >
+            {" "}
+            Close
           </button>
         </div>
         <div id="container">
           <div id="tabs">
-            {categories.map((category, index) =>
-              <button id="tabButton" key={index} value={category} onClick={e => this.openTab(e)} >{this.capitalizeFirstLetter(category)}</button>
-            )}
+            {categories.map((category, index) => (
+              <button
+                id="tabButton"
+                key={index}
+                value={category}
+                onClick={e => this.openTab(e)}
+              >
+                {this.capitalizeFirstLetter(category)}
+              </button>
+            ))}
           </div>
           <div id="content">
             <div className="itemlist-wrapper">
-              {filterdItems.map((item, index) =>
+              {filterdItems.map((item, index) => (
                 <div className="card-wrapper" key={index}>
                   <div className="card">
                     <div className="card-container">
-                      <h5><b>{item.item_name}</b></h5>
-                      <img src="https://source.unsplash.com/collection/3225463/200x100" alt="food-logo"></img>
+                      <h5>
+                        <b>{item.item_name}</b>
+                      </h5>
+                      <img
+                        src="https://source.unsplash.com/collection/3225463/200x100"
+                        alt="food-logo"
+                      />
                     </div>
                   </div>
 
                   <div className="detail-panel">
                     <div className="h-row">
-                      <label >{item.item_name} </label>
+                      <label>{item.item_name} </label>
                     </div>
                     <div className="h-row">
-                      <label >RS. {item.price} </label>
+                      <label>RS. {item.price} </label>
                     </div>
                     <div className="h-row">
-                      {itemsInOrder.indexOf(item.item_id) > -1 ? "Already added" :
+                      {itemsInOrder.indexOf(item.item_id) > -1 ? (
+                        "Already added"
+                      ) : (
                         <div>
-                          <p>  <input id="data-input" type="number" defaultValue={0} onChange={e => this.handleAddItem(e, item.item_id)}></input></p>
-                        </div>}
+                          <p>
+                            {" "}
+                            <input
+                              id="data-input"
+                              type="number"
+                              defaultValue={0}
+                              onChange={e =>
+                                this.handleAddItem(e, item.item_id)
+                              }
+                            />
+                          </p>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
-              )}
+              ))}
             </div>
           </div>
         </div>
@@ -101,14 +135,17 @@ const mapStateToProps = state => {
   return {
     items: state.items.data,
     orderitems: state.orderitems
-  }
-}
+  };
+};
 
 const mapActionsToProps = {
   onRetrieveItems: RetrieveItems,
   onAddOrderItem: AddOrderItem
-}
-export default connect(mapStateToProps, mapActionsToProps)(ItemCartModal)
+};
+export default connect(
+  mapStateToProps,
+  mapActionsToProps
+)(ItemCartModal);
 
 //<input className="input_quantity" placeholder="Enter order Qty" required type="number" min="0" max="100" defaultValue={1} />
 //<button className="toggle-button" htmlFor="check"><i className="fa fa-cart-plus" id="addcart-icon"></i></button>
