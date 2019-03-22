@@ -57,7 +57,7 @@
 
 <h2> Running the tests </h2>
 
-<h3> React client testing with Jest </h3>
+<h3> React client testing with  <a href="https://jestjs.io/">Jest</a> </h3>
 <ol>
 <li>
 Navigate to the client directory and run following code
