@@ -25,14 +25,12 @@
 <li> On the command line navigate to the directory <b>server</b></li>
 
 <li>Install server dependencies by running following command.</li>
-```javascript
-npm install
-```
+`npm install`
+
 
 <li> Start the server</li>
-```javascript
-npm start
-```
+`npm start`
+
 </ol>
 
 <h3> Running react client locally</h3>
@@ -40,14 +38,13 @@ npm start
 <li>On the teriminal navigate to the directory <b>client</b></li>
 
 <li>Install the client dependencies.</li>
-```javascript
-npm install
-```
+`http://localhost:3000`
+
+
 
 <li>Start the client</li>
-```javascript
-npm start
-```
+`npm start`
+
 </ol>
 <li> Open a browser and access: <a href="http://localhost:3000">http://localhost:3000 </a></li>
 
