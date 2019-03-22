@@ -24,11 +24,15 @@
 
 <li> On the command line navigate to the directory <b>server</b></li>
 
+        cd server
+
 <li>Install server dependencies by running following command.</li>
-         npm install
+         
+        npm install
 
 
 <li> Start the server</li>
+        
         npm start
 
 </ol>
@@ -37,12 +41,15 @@
 <ol>
 <li>On the teriminal navigate to the directory <b>client</b></li>
 
+        cd client
+
 <li>Install the client dependencies.</li>
 
         npm install
 
 
 <li>Start the client</li>
+        
         npm start
 
 </ol>
