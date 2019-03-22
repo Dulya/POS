@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "nyc mocha --exit",
+    "test": "nyc mocha --timeout 50000 --exit",
     "test-coverage": "NODE_ENV=test istanbul cover _mocha —- -R spec"
   },
   "dependencies": {

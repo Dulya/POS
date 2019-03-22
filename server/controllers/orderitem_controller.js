@@ -7,7 +7,7 @@ exports.addOrderItem = (req, res) => {
       res.json(result);
     })
     .catch(err => {
-      res.status(400).json({ message: "Internal database error" });
+      res.status(400).json({ message: err.sqlMessage });
     });
 };
 
@@ -17,7 +17,7 @@ exports.removeOrderItem = (req, res) => {
       res.send(result);
     })
     .catch(err => {
-      res.status(400).json({ message: "Internal database error" });
+      res.status(400).json({ message: err.sqlMessage });
     });
 };
 
@@ -31,6 +31,6 @@ exports.updateOrderItem = (req, res) => {
       }
     })
     .catch(err => {
-      res.status(400).json({ message: "Internal database error" });
+      res.status(400).json({ message: err.sqlMessage });
     });
 };

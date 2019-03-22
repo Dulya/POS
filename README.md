@@ -55,6 +55,10 @@
 </ol>
 <li> Open a browser and access: <a href="http://localhost:3000">http://localhost:3000 </a></li>
 
+<h4>Test user login</h4>
+<p>email : john.smith@gmail.com</p>
+<p>password : 123</p>
+
 <h2> Running the tests </h2>
 
 <h3> Testing react client with  <a href="https://jestjs.io/">Jest</a> </h3>

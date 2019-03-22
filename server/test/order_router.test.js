@@ -24,7 +24,6 @@ describe("Testing order api routes", () => {
       .get("/api/order/id/O00001")
       .set("cookie", token)
       .expect("Content-Type", /json/)
-      .expect(200)
       .expect(200, done);
   });
 
@@ -33,7 +32,6 @@ describe("Testing order api routes", () => {
       .get("/api/order/id/O00001")
       .set("cookie", token)
       .expect("Content-Type", /json/)
-      .expect(200)
       .expect(200, done);
   });
 
@@ -42,7 +40,6 @@ describe("Testing order api routes", () => {
       .get("/api/order/id/O00005")
       .set("cookie", token)
       .expect("Content-Type", /json/)
-      .expect(404)
       .expect(404, done);
   });
 
@@ -52,7 +49,6 @@ describe("Testing order api routes", () => {
       .set("user", { user_name: "john" })
       .set("cookie", token)
       .expect("Content-Type", /json/)
-      .expect(200)
       .expect(200, done);
   });
 });
