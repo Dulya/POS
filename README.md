@@ -57,7 +57,7 @@
 
 <h2> Running the tests </h2>
 
-<h3> React client testing with  <a href="https://jestjs.io/">Jest</a> </h3>
+<h3> Testing react client with  <a href="https://jestjs.io/">Jest</a> </h3>
 <ol>
 <li>
 Navigate to the client directory and run following code
@@ -68,7 +68,7 @@ Navigate to the client directory and run following code
 </ol>
 
 
-<h3> Node server testing with <a href="https://www.npmjs.com/package/supertest">Supertest</a> </h3>
+<h3> Testing node server with <a href="https://www.npmjs.com/package/supertest">Supertest</a> </h3>
 <ol>
 <li>
 Navigate to the server directory and run following code
