@@ -37,9 +37,12 @@
 <ol>
 <li>On the teriminal navigate to the directory <b>client</b></li>
 
-<li>Install the client dependencies.</li>
+<li>
+Install the client dependencies.
+ ```npm install```
+</li>
 
- <p><b>npm install</b></p>
+
 
 
 
