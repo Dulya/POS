@@ -39,8 +39,11 @@
 
 <li>
 Install the client dependencies.
- ```npm install```
+ ```npm install
+```
 </li>
+ ```npm install
+```
 
 
 
