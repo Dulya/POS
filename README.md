@@ -29,7 +29,11 @@
 
 
 <li> Start the server</li>
-`npm start`
+<p>
+```
+npm start
+```
+<p>
 
 </ol>
 
