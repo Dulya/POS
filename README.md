@@ -38,12 +38,14 @@
 <li>On the teriminal navigate to the directory <b>client</b></li>
 
 <li>Install the client dependencies.</li>
-`http://localhost:3000`
+```
+npm install
+```
 
 
 
 <li>Start the client</li>
-`npm start`
+    npm start
 
 </ol>
 <li> Open a browser and access: <a href="http://localhost:3000">http://localhost:3000 </a></li>
