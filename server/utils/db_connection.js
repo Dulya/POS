@@ -2,12 +2,11 @@
 
 var mysql = require('mysql');
 
-//local mysql db connection
 var connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'Chamo@1993',
-    database: 'pos_db'
+    host: 'db4free.net',
+    user: 'dulya_chamo',
+    password: 'chamodyani1993',
+    database: 'pos_database'
 });
 
 connection.connect(err => {
