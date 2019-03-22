@@ -55,6 +55,29 @@
 </ol>
 <li> Open a browser and access: <a href="http://localhost:3000">http://localhost:3000 </a></li>
 
+<h2> Running the tests </h2>
+
+<h3> React client testing with Jest </h3>
+<ol>
+<li>
+Navigate to the client directory and run following code
+</li>
+
+        cd client
+        npm test
+</ol>
+
+
+<h3> Node server testing with Supertest </h3>
+<ol>
+<li>
+Navigate to the server directory and run following code
+</li>
+
+        cd server
+        npm test
+</ol>
+
 
  	
 	
