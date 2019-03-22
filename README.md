@@ -68,7 +68,7 @@ Navigate to the client directory and run following code
 </ol>
 
 
-<h3> Node server testing with Supertest </h3>
+<h3> Node server testing with <a href="https://www.npmjs.com/package/supertest">Supertest</a> </h3>
 <ol>
 <li>
 Navigate to the server directory and run following code
