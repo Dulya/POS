@@ -16,29 +16,35 @@
 
 <h2> Running node server and client locally</h2>
 
-<ol>Make sure you have an uptodate version of node.js installed on your system. If you do not have node.js in your system you can download it <a href="https://nodejs.org/en/">here</a></ol>
+<li>Make sure you have an uptodate version of node.js installed on your system. If you do not have node.js in your system you can download it <a href="https://nodejs.org/en/">here</a></li>
 
-<ol> Clone this repositary to your machine.</ol>
+<li> Clone this repositary to your machine.</li>
 
-<ol> On the command line navigate to the directory <b>server</b></ol>
+<li> On the command line navigate to the directory <b>server</b></li>
 
-<ol>Install server dependencies by running following command.</ol>
-
+<li>Install server dependencies by running following command.</li>
+...javascript
 npm install
+...
 
-<ol> Start the server</ol>
+<li> Start the server</li>
+...javascript
 npm start
+...
 
-<ol>On the teriminal navigate to the directory <b>client</b></ol>
+<li>On the teriminal navigate to the directory <b>client</b></li>
 
-<ol>Install the client dependencies.</ol>
+<li>Install the client dependencies.</li>
+...javascript
 npm install
+...
 
-
-<ol>Start the client</ol>
+<li>Start the client</li>
+...javascript
 npm start
+...
 
-<ol> Open a browser and access:<a> http://localhost:3000</a></ol>
+<li> Open a browser and access: <a href="http://localhost:3000">http://localhost:3000 </a></li>
 
 
  	
