@@ -25,11 +25,11 @@
 <li> On the command line navigate to the directory <b>server</b></li>
 
 <li>Install server dependencies by running following command.</li>
- <p><b>npm install</b></p>
+         npm install
 
 
 <li> Start the server</li>
-<p><b>npm start</b></p>
+        npm start
 
 </ol>
 
@@ -37,20 +37,13 @@
 <ol>
 <li>On the teriminal navigate to the directory <b>client</b></li>
 
-<li>
-Install the client dependencies.
- ```npm install
-```
-</li>
- ```npm install
-```
+<li>Install the client dependencies.</li>
 
-
-
+        npm install
 
 
 <li>Start the client</li>
-    <p><b>npm start</b></p>
+        npm start
 
 </ol>
 <li> Open a browser and access: <a href="http://localhost:3000">http://localhost:3000 </a></li>
