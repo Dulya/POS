@@ -131,7 +131,7 @@ class OrderItemView extends React.Component {
                   </td>
                   <td className="table_cell">{this.props.orderitems.status}</td>
                   <td className="table_cell">
-                    {this.props.orderitems.total_amount}
+                    Rs. {this.props.orderitems.total_amount}
                   </td>
                 </tr>
               </tbody>
@@ -161,7 +161,7 @@ class OrderItemView extends React.Component {
                     Quantity
                   </th>
                   <th className="table_cell" scope="col">
-                    Unit Price
+                    Unit Price (Rs.)
                   </th>
                 </tr>
               </thead>
@@ -185,7 +185,7 @@ class OrderItemView extends React.Component {
                         }
                       />
                     </td>
-                    <td className="table_cell">{orderitem.price}</td>
+                    <td className="table_cell">{orderitem.price.toFixed(2)}</td>
                     <td className="table_cell">
                       <button
                         className="remove_btn"

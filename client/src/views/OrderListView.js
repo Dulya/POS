@@ -81,7 +81,7 @@ class OrderListView extends React.Component {
                   Status
                 </th>
                 <th className="table_cell" scope="col">
-                  Total Amount
+                  Total Amount (Rs.)
                 </th>
               </tr>
             </thead>
@@ -102,7 +102,7 @@ class OrderListView extends React.Component {
                     {dateFormat(order.created_date, "dddd, mmmm dS, yyyy")}
                   </td>
                   <td className="table_cell">{order.status}</td>
-                  <td className="table_cell">{order.total_amount}</td>
+                  <td className="table_cell">{order.total_amount.toFixed(2)}</td>
                 </tr>
               ))}
             </tbody>

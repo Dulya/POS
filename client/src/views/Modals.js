@@ -99,7 +99,7 @@ class ItemCartModal extends React.Component {
                       <label>{item.item_name} </label>
                     </div>
                     <div className="h-row">
-                      <label>RS. {item.price} </label>
+                      <label>RS. {item.price.toFixed(2)} </label>
                     </div>
                     <div className="h-row">
                       {itemsInOrder.indexOf(item.item_id) > -1 ? (
