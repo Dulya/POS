@@ -111,11 +111,11 @@ class ItemCartModal extends React.Component {
                             <input
                               id="data-input"
                               type="number"
-                              defaultValue={0}
+                              defaultValue={1}
                               onChange={e =>
                                 this.handleAddItem(e, item.item_id)
                               }
-                            />
+                            min="1"/>
                           </p>
                         </div>
                       )}

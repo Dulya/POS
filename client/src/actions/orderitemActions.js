@@ -20,10 +20,7 @@ export default function RetrieveItemsByOrderId(order_id) {
 export function UpdateOrderItem(updatedOrderItem) {
   return dispatch => {
     return axios.put("/api/orderitem", updatedOrderItem).then(res => {
-      dispatch({
-        type: UPDATED_ORDER_ITEM,
-        payload: res.data
-      });
+      dispatch(RetrieveItemsByOrderId(updatedOrderItem.order_id));
     });
   };
 }
